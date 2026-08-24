@@ -2,30 +2,91 @@ import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ServiceSection from "@/components/public/ServiceSection";
+import ProjectSection from "@/components/public/ProjectSection";
+import NewsSection from "@/components/public/NewsSection";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-white font-sans">
       <TopHeader />
       <MainHeader />
       <Navbar />
       <main>
         <Hero />
         
-        {/* Simple About Section to fill the page */}
-        <section className="py-16 px-4 bg-white">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold mb-6 text-gray-800">Tentang Kami</h2>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              PT Harum Jaya adalah perusahaan konstruksi dan arsitektur terkemuka yang berdedikasi untuk memberikan kualitas terbaik dalam setiap proyek. Kami percaya bahwa setiap perencanaan dapat menjadi kenyataan melalui keahlian teknik yang tepat.
+        {/* About Summary */}
+        <section className="py-20 px-4 bg-white relative overflow-hidden">
+          <div className="absolute -left-20 top-10 text-[120px] font-bold text-gray-50 opacity-[0.03] select-none pointer-events-none italic uppercase">
+            History
+          </div>
+          <div className="container mx-auto max-w-4xl text-center relative z-10">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800 uppercase italic tracking-tight">
+              Membangun Masa Depan Dengan Presisi
+            </h2>
+            <div className="w-16 h-1 bg-orange-500 mx-auto mb-8"></div>
+            <p className="text-gray-600 leading-loose text-lg font-light">
+              CV IM adalah perusahaan konstruksi dan arsitektur terkemuka yang berdedikasi untuk memberikan kualitas terbaik dalam setiap proyek. Kami percaya bahwa setiap perencanaan dapat menjadi kenyataan melalui keahlian teknik yang tepat dan komitmen terhadap detail.
             </p>
           </div>
         </section>
+
+        <ServiceSection />
+        <ProjectSection />
+        <NewsSection />
+
+        {/* Training & Career CTA */}
+        <section className="py-16 bg-[#2c3e50] text-white">
+          <div className="container mx-auto max-w-7xl px-4 flex flex-col md:flex-row gap-8">
+            <div className="flex-1 bg-[#34495e] p-10 border-l-4 border-orange-500">
+              <h3 className="text-2xl font-bold mb-4 italic">PROGRAM PELATIHAN</h3>
+              <p className="text-gray-300 text-sm mb-6 leading-relaxed">Tingkatkan kompetensi Anda melalui program sertifikasi SKK, Bimtek, dan Akademik Tukang bersama mentor profesional kami.</p>
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
+                Info Pelatihan
+              </button>
+            </div>
+            <div className="flex-1 bg-[#34495e] p-10 border-l-4 border-blue-500">
+              <h3 className="text-2xl font-bold mb-4 italic">KARIR & BUDAYA</h3>
+              <p className="text-gray-300 text-sm mb-6 leading-relaxed">Bergabunglah dengan tim inovatif kami. Kami mencari talenta terbaik untuk membangun infrastruktur Indonesia yang lebih baik.</p>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
+                Cari Lowongan
+              </button>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="bg-gray-100 border-t py-8">
-        <div className="container mx-auto px-4 text-center text-gray-500 text-sm">
-          <p>© 2024 PT Harum Jaya. All rights reserved.</p>
+
+      <footer className="bg-gray-50 border-t py-12">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <h4 className="text-xl font-bold italic mb-6">CV IM</h4>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                We engineer your plan to a reality. Perusahaan jasa konstruksi, arsitektur, dan pusat pengembangan kompetensi SDM konstruksi.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-800">Quick Links</h4>
+              <ul className="text-gray-500 text-sm space-y-3">
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Tentang Kami</a></li>
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Proyek Pilihan</a></li>
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Layanan Konstruksi</a></li>
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Hubungi Kami</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-800">Office</h4>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Banda Aceh, Indonesia<br />
+                pt.harumjaya@yahoo.co.id<br />
+                (0651) 8016088
+              </p>
+            </div>
+          </div>
+          <div className="border-t pt-8 text-center text-gray-400 text-[10px] uppercase font-bold tracking-[0.2em]">
+            <p>© 2024 CV IM Construction & Architecture. All rights reserved.</p>
+          </div>
         </div>
       </footer>
       <MadeWithDyad />
