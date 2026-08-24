@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,7 +15,9 @@ import {
   UserPlus, 
   Monitor, 
   Hotel,
-  ChevronRight
+  ChevronRight,
+  ExternalLink,
+  Eye
 } from "lucide-react";
 import { showError, showSuccess } from "@/utils/toast";
 import ProjectManager from "@/components/admin/ProjectManager";
@@ -76,16 +78,31 @@ const Admin = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-[#2c3e50] text-white flex flex-col border-r border-gray-700 shrink-0">
-        <div className="p-6 border-b border-gray-700 hidden md:block">
+        <div className="p-6 border-b border-gray-700 hidden md:flex items-center justify-between">
           <h1 className="text-xl font-bold italic">CV IM Admin</h1>
+        </div>
+        
+        <div className="p-4 border-b border-gray-700/50">
+          <Link to="/" target="_blank">
+            <Button variant="outline" className="w-full justify-start gap-2 bg-orange-500 hover:bg-orange-600 text-white border-none text-xs font-bold">
+              <Eye size={16} /> LIHAT WEBSITE
+            </Button>
+          </Link>
         </div>
         
         {/* Mobile Header Admin */}
         <div className="md:hidden p-4 flex justify-between items-center bg-[#1a252f]">
           <h1 className="font-bold italic">CV IM Admin</h1>
-          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-red-400">
-            <LogOut size={18} />
-          </Button>
+          <div className="flex gap-2">
+            <Link to="/">
+              <Button variant="ghost" size="sm" className="text-orange-400">
+                <Eye size={18} />
+              </Button>
+            </Link>
+            <Button variant="ghost" size="sm" onClick={handleLogout} className="text-red-400">
+              <LogOut size={18} />
+            </Button>
+          </div>
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto flex md:flex-col overflow-x-auto md:overflow-x-hidden gap-2 md:gap-1 no-scrollbar">
@@ -120,16 +137,23 @@ const Admin = () => {
             </div>
             <h2 className="text-2xl font-bold text-gray-800">{currentTab}</h2>
           </div>
-          {currentTab === "Dashboard" && (
-            <div className="flex gap-2">
-              <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Pelatihan")}>
-                <Monitor size={20} className="mr-2" /> Kelola Pelatihan
+          <div className="flex gap-2">
+            <Link to="/" target="_blank">
+              <Button variant="outline" className="border-orange-200 text-orange-600 hover:bg-orange-50 hidden sm:flex items-center gap-2">
+                <ExternalLink size={16} /> Pratinjau Situs
               </Button>
-              <Button variant="outline" onClick={() => setCurrentTab("Proyek")}>
-                <Briefcase size={20} className="mr-2" /> Kelola Proyek
-              </Button>
-            </div>
-          )}
+            </Link>
+            {currentTab === "Dashboard" && (
+              <>
+                <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Pelatihan")}>
+                  <Monitor size={20} className="mr-2" /> Kelola Pelatihan
+                </Button>
+                <Button variant="outline" onClick={() => setCurrentTab("Proyek")}>
+                  <Briefcase size={20} className="mr-2" /> Kelola Proyek
+                </Button>
+              </>
+            )}
+          </div>
         </header>
 
         {currentTab === "Dashboard" && (
