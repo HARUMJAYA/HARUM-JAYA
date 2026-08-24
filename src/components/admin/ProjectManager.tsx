@@ -5,6 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from "@/components/ui/select";
 import { Plus, Trash2, Loader2 } from "lucide-react";
 import { showSuccess, showError } from "@/utils/toast";
 
@@ -18,6 +25,15 @@ const ProjectManager = () => {
   const [category, setCategory] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
+
+  const categories = [
+    "eksterior",
+    "interior",
+    "pekerjaan gedung",
+    "pekerjaan rancang bangun",
+    "pekerjaan sipil",
+    "pekerjaan umum"
+  ];
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -91,11 +107,18 @@ const ProjectManager = () => {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Kategori</label>
-              <Input 
-                placeholder="Contoh: Konstruksi / Arsitektur" 
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
+              <Select onValueChange={setCategory} value={category}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Kategori" />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map((cat) => (
+                    <SelectItem key={cat} value={cat}>
+                      {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2 md:col-span-2">
               <label className="text-sm font-medium">URL Gambar (Unsplash/Link)</label>
