@@ -3,7 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LayoutDashboard, Newspaper, Briefcase, Settings, LogOut, Plus } from "lucide-react";
+import { 
+  LayoutDashboard, 
+  Newspaper, 
+  Briefcase, 
+  Settings, 
+  LogOut, 
+  Plus, 
+  Building2, 
+  Cog, 
+  UserPlus, 
+  Monitor, 
+  Hotel 
+} from "lucide-react";
 import { showError, showSuccess } from "@/utils/toast";
 
 const Admin = () => {
@@ -39,26 +51,38 @@ const Admin = () => {
 
   if (loading) return <div className="flex items-center justify-center h-screen">Loading...</div>;
 
+  const navItems = [
+    { label: "Dashboard", icon: <LayoutDashboard size={20} />, active: true },
+    { label: "Proyek", icon: <Briefcase size={20} /> },
+    { label: "Berita", icon: <Newspaper size={20} /> },
+    { label: "Perusahaan", icon: <Building2 size={20} /> },
+    { label: "Pelayanan", icon: <Cog size={20} /> },
+    { label: "Karir", icon: <UserPlus size={20} /> },
+    { label: "Pelatihan", icon: <Monitor size={20} /> },
+    { label: "Guest House", icon: <Hotel size={20} /> },
+    { label: "Pengaturan", icon: <Settings size={20} /> },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#2c3e50] text-white hidden md:flex flex-col">
+      <aside className="w-64 bg-[#2c3e50] text-white hidden md:flex flex-col border-r border-gray-700">
         <div className="p-6 border-b border-gray-700">
           <h1 className="text-xl font-bold italic">CV IM Admin</h1>
         </div>
-        <nav className="flex-1 p-4 space-y-2">
-          <button className="w-full flex items-center gap-3 px-4 py-3 bg-[#34495e] rounded-lg text-orange-400 font-medium">
-            <LayoutDashboard size={20} /> Dashboard
-          </button>
-          <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#34495e] rounded-lg transition-colors text-gray-300">
-            <Briefcase size={20} /> Proyek
-          </button>
-          <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#34495e] rounded-lg transition-colors text-gray-300">
-            <Newspaper size={20} /> Berita
-          </button>
-          <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#34495e] rounded-lg transition-colors text-gray-300">
-            <Settings size={20} /> Pengaturan
-          </button>
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+          {navItems.map((item, index) => (
+            <button 
+              key={index}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
+                item.active 
+                ? 'bg-[#34495e] text-orange-400' 
+                : 'text-gray-300 hover:bg-[#34495e] hover:text-white'
+              }`}
+            >
+              {item.icon} {item.label}
+            </button>
+          ))}
         </nav>
         <div className="p-4 border-t border-gray-700">
           <Button variant="ghost" className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-900/20" onClick={handleLogout}>
