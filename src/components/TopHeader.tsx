@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Youtube, Lock, LogOut } from "lucide-react";
+import { Facebook, Instagram, Youtube, Lock, LogOut, LayoutDashboard } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -48,13 +48,22 @@ const TopHeader = () => {
           </div>
           
           {session ? (
-            <button 
-              onClick={handleLogout}
-              className="flex items-center gap-1.5 hover:text-red-600 transition-colors font-semibold text-red-500"
-            >
-              <LogOut size={12} />
-              LOGOUT
-            </button>
+            <div className="flex items-center gap-4">
+              <Link 
+                to="/admin" 
+                className="flex items-center gap-1.5 hover:text-orange-600 transition-colors font-bold text-[#4834d4]"
+              >
+                <LayoutDashboard size={12} />
+                KE PANEL ADMIN
+              </Link>
+              <button 
+                onClick={handleLogout}
+                className="flex items-center gap-1.5 hover:text-red-600 transition-colors font-semibold text-red-500 border-l border-gray-300 pl-4"
+              >
+                <LogOut size={12} />
+                LOGOUT
+              </button>
+            </div>
           ) : (
             <Link 
               to="/login" 

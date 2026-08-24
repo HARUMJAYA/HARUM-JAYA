@@ -1,4 +1,4 @@
-import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock, LogOut } from "lucide-react";
+import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock, LogOut, LayoutDashboard } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -75,15 +75,25 @@ const MainHeader = () => {
                  </a>
                ))}
                
-               {/* Mobile Auth Link */}
+               {/* Mobile Auth Links */}
                {session ? (
-                 <button 
-                   onClick={handleLogout}
-                   className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-red-400 bg-white/5 hover:bg-white/10 transition-colors w-full text-left"
-                 >
-                   <LogOut size={18} />
-                   <span className="text-sm font-bold tracking-wider">LOGOUT</span>
-                 </button>
+                 <>
+                   <Link 
+                     to="/admin"
+                     onClick={() => setIsOpen(false)}
+                     className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-orange-400 bg-white/5 hover:bg-white/10 transition-colors"
+                   >
+                     <LayoutDashboard size={18} />
+                     <span className="text-sm font-bold tracking-wider">KE PANEL ADMIN</span>
+                   </Link>
+                   <button 
+                     onClick={handleLogout}
+                     className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-red-400 bg-white/5 hover:bg-white/10 transition-colors w-full text-left"
+                   >
+                     <LogOut size={18} />
+                     <span className="text-sm font-bold tracking-wider">LOGOUT</span>
+                   </button>
+                 </>
                ) : (
                  <Link 
                    to="/login"
