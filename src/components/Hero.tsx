@@ -2,33 +2,36 @@ import { ChevronRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="relative w-full min-h-[400px] md:h-[600px] overflow-hidden">
-      {/* Background Image Placeholder */}
+    <div className="relative w-full h-[450px] sm:h-[550px] md:h-[650px] overflow-hidden">
+      {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2000')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1504307651254-35680f3366d4?auto=format&fit=crop&q=80&w=2000')`,
         }}
       >
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl h-full flex items-center justify-center lg:justify-start px-4 py-12 md:py-0">
-        <div className="relative z-10 bg-yellow-400/90 p-6 sm:p-10 md:p-16 w-full max-w-xl backdrop-blur-sm text-center lg:text-left rounded-sm shadow-2xl">
-          <h2 className="text-xl sm:text-3xl md:text-5xl font-serif font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+      {/* Hero Content Overlay */}
+      <div className="container mx-auto max-w-7xl h-full flex flex-col items-center justify-center px-4 relative z-10">
+        <div className="bg-[#f3e5ab]/90 p-6 sm:p-10 w-full max-w-lg md:max-w-xl text-left border-l-4 border-gray-800 shadow-xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2 leading-tight uppercase tracking-tight">
             DAFTAR SERTIFIKAT KOMPETENSI KERJA
           </h2>
           
-          <div className="w-full h-[2px] bg-gray-900 mb-4 md:mb-6 opacity-30"></div>
+          <div className="w-3/4 h-[1px] bg-gray-800 mb-4 opacity-40"></div>
           
-          <h3 className="text-lg sm:text-2xl md:text-3xl font-serif font-medium text-gray-800 mb-6 md:mb-10">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-gray-800 mb-8">
             Lisensi oleh BNSP
           </h3>
 
-          <button className="bg-zinc-900 text-white px-6 py-3 sm:px-8 sm:py-4 flex items-center gap-3 font-bold text-xs sm:text-sm tracking-widest hover:bg-black transition-all mx-auto lg:mx-0 rounded-md shadow-lg group">
-            KLIK UNTUK DAFTAR 
-            <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          <div className="flex justify-start">
+            <button className="bg-[#1a1a1a] text-white px-8 py-3 rounded-full flex items-center gap-3 font-bold text-sm sm:text-base italic tracking-wide hover:bg-black transition-all shadow-lg border border-gray-700 group">
+              KLIK UNTUK DAFTAR 
+              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
