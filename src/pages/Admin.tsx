@@ -21,6 +21,7 @@ import { showError, showSuccess } from "@/utils/toast";
 import ProjectManager from "@/components/admin/ProjectManager";
 import NewsManager from "@/components/admin/NewsManager";
 import CompanyManager from "@/components/admin/CompanyManager";
+import ServiceManager from "@/components/admin/ServiceManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -118,8 +119,8 @@ const Admin = () => {
           </div>
           {currentTab === "Dashboard" && (
             <div className="flex gap-2">
-              <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Perusahaan")}>
-                <Building2 size={20} className="mr-2" /> Profil Perusahaan
+              <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Pelayanan")}>
+                <Cog size={20} className="mr-2" /> Kelola Pelayanan
               </Button>
               <Button variant="outline" onClick={() => setCurrentTab("Proyek")}>
                 <Briefcase size={20} className="mr-2" /> Kelola Proyek
@@ -140,24 +141,24 @@ const Admin = () => {
                 <p className="text-xs text-muted-foreground">Visi, Misi, Struktur, & Sertifikat</p>
               </CardContent>
             </Card>
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setCurrentTab("Pelayanan")}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Manajemen Pelayanan</CardTitle>
+                <Cog className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-blue-500">Kelola</div>
+                <p className="text-xs text-muted-foreground">Kontraktor & Program Magang</p>
+              </CardContent>
+            </Card>
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setCurrentTab("Proyek")}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Manajemen Proyek</CardTitle>
                 <Briefcase className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-orange-500">Kelola</div>
+                <div className="text-2xl font-bold text-orange-500">Inventaris</div>
                 <p className="text-xs text-muted-foreground">Klik untuk mengelola proyek</p>
-              </CardContent>
-            </Card>
-            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setCurrentTab("Berita")}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Manajemen Berita</CardTitle>
-                <Newspaper className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-gray-700">Update</div>
-                <p className="text-xs text-muted-foreground">Informasi terbaru perusahaan</p>
               </CardContent>
             </Card>
           </div>
@@ -166,8 +167,9 @@ const Admin = () => {
         {currentTab === "Perusahaan" && <CompanyManager />}
         {currentTab === "Proyek" && <ProjectManager />}
         {currentTab === "Berita" && <NewsManager />}
+        {currentTab === "Pelayanan" && <ServiceManager />}
 
-        {currentTab !== "Dashboard" && currentTab !== "Perusahaan" && currentTab !== "Proyek" && currentTab !== "Berita" && (
+        {currentTab !== "Dashboard" && currentTab !== "Perusahaan" && currentTab !== "Proyek" && currentTab !== "Berita" && currentTab !== "Pelayanan" && (
           <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
             <div className="inline-flex p-4 rounded-full bg-gray-50 text-gray-400 mb-4">
               <Settings size={48} />
