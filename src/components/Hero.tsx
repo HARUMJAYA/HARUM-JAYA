@@ -15,19 +15,19 @@ const Hero = () => {
 
       {/* Hero Content Overlay */}
       <div className="container mx-auto max-w-7xl h-full flex flex-col items-center justify-center px-4 relative z-10">
-        <div className="bg-[#f3e5ab]/90 p-6 sm:p-10 w-full max-w-lg md:max-w-xl text-left border-l-4 border-gray-800 shadow-xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2 leading-tight uppercase tracking-tight">
+        <div className="bg-[#4834d4]/90 p-6 sm:p-10 w-full max-w-lg md:max-w-xl text-left border-l-4 border-white shadow-xl backdrop-blur-sm">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white mb-2 leading-tight uppercase tracking-tight">
             DAFTAR SERTIFIKAT KOMPETENSI KERJA
           </h2>
           
-          <div className="w-3/4 h-[1px] bg-gray-800 mb-4 opacity-40"></div>
+          <div className="w-3/4 h-[1px] bg-white/40 mb-4"></div>
           
-          <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-gray-800 mb-8">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-gray-100 mb-8">
             Lisensi oleh BNSP
           </h3>
 
           <div className="flex justify-start">
-            <button className="bg-[#1a1a1a] text-white px-8 py-3 rounded-full flex items-center gap-3 font-bold text-sm sm:text-base italic tracking-wide hover:bg-black transition-all shadow-lg border border-gray-700 group">
+            <button className="bg-white text-[#4834d4] px-8 py-3 rounded-full flex items-center gap-3 font-bold text-sm sm:text-base italic tracking-wide hover:bg-gray-100 transition-all shadow-lg border border-transparent group">
               KLIK UNTUK DAFTAR 
               <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
