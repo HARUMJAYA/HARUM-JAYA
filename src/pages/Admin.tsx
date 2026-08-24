@@ -20,6 +20,7 @@ import {
 import { showError, showSuccess } from "@/utils/toast";
 import ProjectManager from "@/components/admin/ProjectManager";
 import NewsManager from "@/components/admin/NewsManager";
+import CompanyManager from "@/components/admin/CompanyManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -57,9 +58,9 @@ const Admin = () => {
 
   const navItems = [
     { label: "Dashboard", icon: <LayoutDashboard size={20} /> },
+    { label: "Perusahaan", icon: <Building2 size={20} /> },
     { label: "Proyek", icon: <Briefcase size={20} /> },
     { label: "Berita", icon: <Newspaper size={20} /> },
-    { label: "Perusahaan", icon: <Building2 size={20} /> },
     { label: "Pelayanan", icon: <Cog size={20} /> },
     { label: "Karir", icon: <UserPlus size={20} /> },
     { label: "Pelatihan", icon: <Monitor size={20} /> },
@@ -117,11 +118,11 @@ const Admin = () => {
           </div>
           {currentTab === "Dashboard" && (
             <div className="flex gap-2">
-              <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Proyek")}>
-                <Plus size={20} className="mr-2" /> Kelola Proyek
+              <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Perusahaan")}>
+                <Building2 size={20} className="mr-2" /> Profil Perusahaan
               </Button>
-              <Button variant="outline" onClick={() => setCurrentTab("Berita")}>
-                <Newspaper size={20} className="mr-2" /> Tulis Berita
+              <Button variant="outline" onClick={() => setCurrentTab("Proyek")}>
+                <Briefcase size={20} className="mr-2" /> Kelola Proyek
               </Button>
             </div>
           )}
@@ -129,14 +130,24 @@ const Admin = () => {
 
         {currentTab === "Dashboard" && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setCurrentTab("Perusahaan")}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Profil Perusahaan</CardTitle>
+                <Building2 className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-[#4834d4]">Edit</div>
+                <p className="text-xs text-muted-foreground">Visi, Misi, Struktur, & Sertifikat</p>
+              </CardContent>
+            </Card>
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setCurrentTab("Proyek")}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Manajemen Proyek</CardTitle>
                 <Briefcase className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-[#4834d4]">Kelola</div>
-                <p className="text-xs text-muted-foreground">Klik untuk mengelola inventaris proyek</p>
+                <div className="text-2xl font-bold text-orange-500">Kelola</div>
+                <p className="text-xs text-muted-foreground">Klik untuk mengelola proyek</p>
               </CardContent>
             </Card>
             <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setCurrentTab("Berita")}>
@@ -145,17 +156,18 @@ const Admin = () => {
                 <Newspaper className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-orange-500">Update</div>
-                <p className="text-xs text-muted-foreground">Publikasikan informasi terbaru</p>
+                <div className="text-2xl font-bold text-gray-700">Update</div>
+                <p className="text-xs text-muted-foreground">Informasi terbaru perusahaan</p>
               </CardContent>
             </Card>
           </div>
         )}
 
+        {currentTab === "Perusahaan" && <CompanyManager />}
         {currentTab === "Proyek" && <ProjectManager />}
         {currentTab === "Berita" && <NewsManager />}
 
-        {currentTab !== "Dashboard" && currentTab !== "Proyek" && currentTab !== "Berita" && (
+        {currentTab !== "Dashboard" && currentTab !== "Perusahaan" && currentTab !== "Proyek" && currentTab !== "Berita" && (
           <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
             <div className="inline-flex p-4 rounded-full bg-gray-50 text-gray-400 mb-4">
               <Settings size={48} />
