@@ -1,6 +1,7 @@
-import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight } from "lucide-react";
+import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MainHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +27,12 @@ const MainHeader = () => {
               <Menu size={28} strokeWidth={1.5} />
             </button>
           </SheetTrigger>
-          <SheetContent side="left" className="bg-[#2c3e50] text-white p-0 border-none w-[300px]">
+          <SheetContent side="left" className="bg-[#2c3e50] text-white p-0 border-none w-[300px] flex flex-col">
              <div className="p-6 border-b border-gray-700 bg-[#1a252f]">
                <h2 className="text-xl font-bold italic">CV IM</h2>
                <p className="text-[10px] text-red-500 italic">Engineering reality</p>
              </div>
-             <nav className="flex flex-col">
+             <nav className="flex-1 flex flex-col overflow-y-auto">
                {navItems.map((item, index) => (
                  <a 
                    key={index}
@@ -46,8 +47,19 @@ const MainHeader = () => {
                    <ChevronRight size={14} className="opacity-30" />
                  </a>
                ))}
+               
+               {/* Mobile Login Admin Link */}
+               <Link 
+                 to="/login"
+                 onClick={() => setIsOpen(false)}
+                 className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-[#4834d4] bg-white/5 hover:bg-white/10 transition-colors"
+               >
+                 <Lock size={18} />
+                 <span className="text-sm font-bold tracking-wider underline">LOGIN ADMIN</span>
+               </Link>
              </nav>
-             <div className="p-6 mt-auto">
+             
+             <div className="p-6 mt-auto bg-[#1a252f]/50">
                 <p className="text-[10px] text-gray-500 uppercase font-bold mb-4">Contact Us</p>
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2 text-xs text-gray-400">
