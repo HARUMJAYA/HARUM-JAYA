@@ -1,10 +1,37 @@
-import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock } from "lucide-react";
+import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock, LogOut } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { showSuccess, showError } from "@/utils/toast";
 
 const MainHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [session, setSession] = useState<any>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      showError("Gagal logout");
+    } else {
+      showSuccess("Berhasil keluar");
+      setIsOpen(false);
+      navigate("/");
+    }
+  };
 
   const navItems = [
     { label: "HOME", icon: <Home size={18} />, active: true },
@@ -48,15 +75,25 @@ const MainHeader = () => {
                  </a>
                ))}
                
-               {/* Mobile Login Admin Link */}
-               <Link 
-                 to="/login"
-                 onClick={() => setIsOpen(false)}
-                 className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-[#4834d4] bg-white/5 hover:bg-white/10 transition-colors"
-               >
-                 <Lock size={18} />
-                 <span className="text-sm font-bold tracking-wider underline">LOGIN ADMIN</span>
-               </Link>
+               {/* Mobile Auth Link */}
+               {session ? (
+                 <button 
+                   onClick={handleLogout}
+                   className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-red-400 bg-white/5 hover:bg-white/10 transition-colors w-full text-left"
+                 >
+                   <LogOut size={18} />
+                   <span className="text-sm font-bold tracking-wider">LOGOUT</span>
+                 </button>
+               ) : (
+                 <Link 
+                   to="/login"
+                   onClick={() => setIsOpen(false)}
+                   className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-[#4834d4] bg-white/5 hover:bg-white/10 transition-colors"
+                 >
+                   <Lock size={18} />
+                   <span className="text-sm font-bold tracking-wider underline">LOGIN ADMIN</span>
+                 </Link>
+               )}
              </nav>
              
              <div className="p-6 mt-auto bg-[#1a252f]/50">
