@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { 
@@ -12,7 +11,7 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
-import { Plus, Trash2, Loader2 } from "lucide-react";
+import { Plus, Trash2, Loader2, Upload, ImageIcon } from "lucide-react";
 import { showSuccess, showError } from "@/utils/toast";
 
 const ProjectManager = () => {
@@ -23,8 +22,8 @@ const ProjectManager = () => {
   // Form state
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const categories = [
     "eksterior",
@@ -51,40 +50,80 @@ const ProjectManager = () => {
     fetchProjects();
   }, []);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !category) {
-      showError("Judul dan Kategori wajib diisi");
+    if (!title || !category || !imageFile) {
+      showError("Judul, Kategori, dan Gambar wajib diisi");
       return;
     }
 
     setIsSubmitting(true);
-    const { error } = await supabase.from("projects").insert([
-      { title, category, image_url: imageUrl, description }
-    ]);
+    try {
+      // 1. Upload Gambar ke Storage
+      const fileExt = imageFile.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
 
-    if (error) {
-      showError("Gagal menambah proyek: " + error.message);
-    } else {
+      const { error: uploadError } = await supabase.storage
+        .from('projects')
+        .upload(filePath, imageFile);
+
+      if (uploadError) throw uploadError;
+
+      // 2. Ambil URL Publik Gambar
+      const { data: { publicUrl } } = supabase.storage
+        .from('projects')
+        .getPublicUrl(filePath);
+
+      // 3. Simpan data ke tabel projects
+      const { error: insertError } = await supabase.from("projects").insert([
+        { title, category, image_url: publicUrl }
+      ]);
+
+      if (insertError) throw insertError;
+
       showSuccess("Proyek berhasil ditambahkan");
       setTitle("");
       setCategory("");
-      setImageUrl("");
-      setDescription("");
+      setImageFile(null);
+      setPreviewUrl(null);
       fetchProjects();
+    } catch (error: any) {
+      showError("Gagal menyimpan proyek: " + error.message);
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string, imageUrl: string) => {
     if (!confirm("Apakah Anda yakin ingin menghapus proyek ini?")) return;
 
-    const { error } = await supabase.from("projects").delete().eq("id", id);
-    if (error) showError("Gagal menghapus proyek");
-    else {
-      showSuccess("Proyek berhasil dihapus");
-      fetchProjects();
+    // Hapus data dari tabel
+    const { error: deleteError } = await supabase.from("projects").delete().eq("id", id);
+    
+    if (deleteError) {
+      showError("Gagal menghapus data proyek");
+      return;
     }
+
+    // Coba hapus file dari storage jika ada URL
+    if (imageUrl) {
+      const fileName = imageUrl.split('/').pop();
+      if (fileName) {
+        await supabase.storage.from('projects').remove([fileName]);
+      }
+    }
+
+    showSuccess("Proyek berhasil dihapus");
+    fetchProjects();
   };
 
   return (
@@ -96,54 +135,72 @@ const ProjectManager = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Judul Proyek</label>
+                <Input 
+                  placeholder="Contoh: Pembangunan Gedung A" 
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Kategori</label>
+                <Select onValueChange={setCategory} value={category}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Pilih Kategori" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((cat) => (
+                      <SelectItem key={cat} value={cat}>
+                        {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <label className="text-sm font-medium">Judul Proyek</label>
-              <Input 
-                placeholder="Contoh: Pembangunan Gedung A" 
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+              <label className="text-sm font-medium">Unggah Gambar</label>
+              <div className="border-2 border-dashed border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center min-h-[150px] relative">
+                {previewUrl ? (
+                  <div className="relative w-full h-full flex flex-col items-center">
+                    <img src={previewUrl} alt="Preview" className="max-h-[120px] rounded object-cover mb-2" />
+                    <button 
+                      type="button"
+                      onClick={() => { setPreviewUrl(null); setImageFile(null); }}
+                      className="text-xs text-red-500 hover:underline"
+                    >
+                      Hapus & ganti gambar
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <Upload className="text-gray-400 mb-2" size={32} />
+                    <p className="text-xs text-gray-500 mb-2">Klik untuk pilih gambar</p>
+                    <Input 
+                      type="file" 
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                    />
+                  </>
+                )}
+              </div>
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Kategori</label>
-              <Select onValueChange={setCategory} value={category}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih Kategori" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat} value={cat}>
-                      {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <label className="text-sm font-medium">URL Gambar (Unsplash/Link)</label>
-              <Input 
-                placeholder="https://images.unsplash.com/..." 
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <label className="text-sm font-medium">Deskripsi</label>
-              <Textarea 
-                placeholder="Jelaskan detail proyek..." 
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                rows={3}
-              />
-            </div>
+
             <Button 
               type="submit" 
               className="md:col-span-2 bg-[#4834d4] hover:bg-[#341f97]"
               disabled={isSubmitting}
             >
-              {isSubmitting ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" />}
-              Simpan Proyek
+              {isSubmitting ? (
+                <><Loader2 className="animate-spin mr-2" /> Sedang menyimpan...</>
+              ) : (
+                <><Plus className="mr-2" /> Simpan Proyek</>
+              )}
             </Button>
           </form>
         </CardContent>
@@ -173,20 +230,26 @@ const ProjectManager = () => {
                   {projects.map((project) => (
                     <TableRow key={project.id}>
                       <TableCell>
-                        <img 
-                          src={project.image_url || "/placeholder.svg"} 
-                          alt={project.title} 
-                          className="w-12 h-12 object-cover rounded shadow-sm"
-                        />
+                        <div className="w-12 h-12 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
+                          {project.image_url ? (
+                            <img 
+                              src={project.image_url} 
+                              alt={project.title} 
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <ImageIcon size={20} className="text-gray-400" />
+                          )}
+                        </div>
                       </TableCell>
                       <TableCell className="font-medium">{project.title}</TableCell>
-                      <TableCell>{project.category}</TableCell>
+                      <TableCell className="capitalize">{project.category}</TableCell>
                       <TableCell className="text-right">
                         <Button 
                           variant="ghost" 
                           size="icon" 
                           className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                          onClick={() => handleDelete(project.id)}
+                          onClick={() => handleDelete(project.id, project.image_url)}
                         >
                           <Trash2 size={18} />
                         </Button>
