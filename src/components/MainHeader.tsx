@@ -28,7 +28,7 @@ const MainHeader = () => {
           </SheetTrigger>
           <SheetContent side="left" className="bg-[#2c3e50] text-white p-0 border-none w-[300px]">
              <div className="p-6 border-b border-gray-700 bg-[#1a252f]">
-               <h2 className="text-xl font-bold italic">PT HARUM JAYA</h2>
+               <h2 className="text-xl font-bold italic">CV IM</h2>
                <p className="text-[10px] text-red-500 italic">Engineering reality</p>
              </div>
              <nav className="flex flex-col">
@@ -63,7 +63,7 @@ const MainHeader = () => {
 
         <div className="flex flex-col items-center">
           <h1 className="text-xl font-serif font-bold text-[#333] tracking-tight">
-            PT HARUM JAYA
+            CV IM
           </h1>
           <p className="text-[8px] text-red-600 italic font-medium -mt-1">
             We engineer your plan to a reality
@@ -80,7 +80,7 @@ const MainHeader = () => {
         <div className="container mx-auto max-w-7xl flex justify-between items-center">
           <div className="flex flex-col">
             <h1 className="text-4xl font-bold text-[#333] tracking-tighter italic">
-              PT HARUM JAYA
+              CV IM
             </h1>
             <p className="text-red-600 text-sm italic font-medium -mt-1 border-t-2 border-gray-100 pt-1">
               We engineer your plan to a reality
