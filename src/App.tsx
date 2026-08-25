@@ -14,6 +14,10 @@ import Career from "./pages/Career";
 import Training from "./pages/Training";
 import GuestHouse from "./pages/GuestHouse";
 import Company from "./pages/Company";
+import VisionMission from "./pages/VisionMission";
+import Strategy from "./pages/Strategy";
+import Organization from "./pages/Organization";
+import Awards from "./pages/Awards";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +38,10 @@ const App = () => (
           <Route path="/training" element={<Training />} />
           <Route path="/guest-house" element={<GuestHouse />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/vision-mission" element={<VisionMission />} />
+          <Route path="/strategy" element={<Strategy />} />
+          <Route path="/organization" element={<Organization />} />
+          <Route path="/awards" element={<Awards />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

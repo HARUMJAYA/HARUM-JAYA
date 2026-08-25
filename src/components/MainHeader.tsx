@@ -42,10 +42,10 @@ const MainHeader = () => {
       path: "/company",
       subItems: [
         { label: "Profil Utama", path: "/company" },
-        { label: "Visi & Misi", path: "/company#vision" },
-        { label: "Nilai & Strategi", path: "/company#values" },
-        { label: "Struktur Organisasi", path: "/company#structure" },
-        { label: "Penghargaan", path: "/company#awards" },
+        { label: "Visi & Misi", path: "/vision-mission" },
+        { label: "Nilai & Strategi", path: "/strategy" },
+        { label: "Struktur Organisasi", path: "/organization" },
+        { label: "Penghargaan", path: "/awards" },
       ]
     },
     { label: "PROYEK", icon: <Briefcase size={18} />, path: "/projects" },
