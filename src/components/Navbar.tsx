@@ -55,7 +55,18 @@ const Navbar = () => {
     { label: "KARIR", icon: <UserPlus size={14} />, path: "/career" },
     { label: "PELATIHAN", icon: <Monitor size={14} />, path: "/training" },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
-    { label: "NEWS", icon: <Newspaper size={14} />, path: "/news" },
+    { 
+      label: "NEWS", 
+      icon: <Newspaper size={14} />, 
+      path: "/news",
+      dropdown: [
+        { label: "Semua Berita", path: "/news" },
+        { label: "Berita Utama", path: "/news/berita" },
+        { label: "CSR", path: "/news/csr" },
+        { label: "Kegiatan", path: "/news/kegiatan" },
+        { label: "Galeri Foto", path: "/news/galeri" },
+      ]
+    },
   ];
 
   return (

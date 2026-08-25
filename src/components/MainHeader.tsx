@@ -79,7 +79,18 @@ const MainHeader = () => {
     { label: "KARIR", icon: <UserPlus size={18} />, path: "/career" },
     { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
-    { label: "NEWS", icon: <Newspaper size={18} />, path: "/news" },
+    { 
+      label: "NEWS", 
+      icon: <Newspaper size={18} />, 
+      path: "/news",
+      subItems: [
+        { label: "Semua Berita", path: "/news" },
+        { label: "Berita Utama", path: "/news/berita" },
+        { label: "CSR", path: "/news/csr" },
+        { label: "Kegiatan", path: "/news/kegiatan" },
+        { label: "Galeri Foto", path: "/news/galeri" },
+      ]
+    },
   ];
 
   return (
