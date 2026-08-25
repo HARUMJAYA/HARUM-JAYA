@@ -1,5 +1,6 @@
-import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock, LogOut, LayoutDashboard } from "lucide-react";
+import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock, LogOut, LayoutDashboard, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,14 +35,25 @@ const MainHeader = () => {
   };
 
   const navItems = [
-    { label: "HOME", icon: <Home size={18} />, active: true },
-    { label: "PERUSAHAAN", icon: <Users size={18} /> },
-    { label: "PROYEK", icon: <Briefcase size={18} /> },
-    { label: "PELAYANAN", icon: <Cog size={18} /> },
-    { label: "KARIR", icon: <UserPlus size={18} /> },
-    { label: "PELATIHAN", icon: <Monitor size={18} /> },
-    { label: "GUEST HOUSE", icon: null },
-    { label: "NEWS", icon: <Newspaper size={18} /> },
+    { label: "HOME", icon: <Home size={18} />, path: "/" },
+    { 
+      label: "PERUSAHAAN", 
+      icon: <Users size={18} />, 
+      path: "/company",
+      subItems: [
+        { label: "Profil Utama", path: "/company" },
+        { label: "Visi & Misi", path: "/company#vision" },
+        { label: "Nilai & Strategi", path: "/company#values" },
+        { label: "Struktur Organisasi", path: "/company#structure" },
+        { label: "Penghargaan", path: "/company#awards" },
+      ]
+    },
+    { label: "PROYEK", icon: <Briefcase size={18} />, path: "/projects" },
+    { label: "PELAYANAN", icon: <Cog size={18} />, path: "/services" },
+    { label: "KARIR", icon: <UserPlus size={18} />, path: "/career" },
+    { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
+    { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
+    { label: "NEWS", icon: <Newspaper size={18} />, path: "/news" },
   ];
 
   return (
@@ -60,20 +72,45 @@ const MainHeader = () => {
                <p className="text-[10px] text-red-500 italic">Engineering reality</p>
              </div>
              <nav className="flex-1 flex flex-col overflow-y-auto">
-               {navItems.map((item, index) => (
-                 <a 
-                   key={index}
-                   href="#" 
-                   onClick={() => setIsOpen(false)}
-                   className={`flex items-center justify-between px-6 py-4 border-b border-gray-700/50 hover:bg-[#34495e] transition-colors ${item.active ? 'text-orange-400 bg-[#34495e]/30' : 'text-gray-200'}`}
-                 >
-                   <div className="flex items-center gap-4">
-                     {item.icon}
-                     <span className="text-sm font-bold tracking-wider">{item.label}</span>
-                   </div>
-                   <ChevronRight size={14} className="opacity-30" />
-                 </a>
-               ))}
+               <Accordion type="single" collapsible className="w-full">
+                 {navItems.map((item, index) => (
+                   item.subItems ? (
+                     <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-700/50 px-6">
+                       <AccordionTrigger className="hover:no-underline py-4 text-gray-200">
+                         <div className="flex items-center gap-4">
+                           {item.icon}
+                           <span className="text-sm font-bold tracking-wider">{item.label}</span>
+                         </div>
+                       </AccordionTrigger>
+                       <AccordionContent className="flex flex-col gap-1 pb-4">
+                         {item.subItems.map((sub, subIdx) => (
+                           <Link 
+                             key={subIdx} 
+                             to={sub.path}
+                             onClick={() => setIsOpen(false)}
+                             className="text-xs text-gray-400 py-2 pl-10 hover:text-orange-400 transition-colors uppercase font-bold"
+                           >
+                             {sub.label}
+                           </Link>
+                         ))}
+                       </AccordionContent>
+                     </AccordionItem>
+                   ) : (
+                     <Link 
+                       key={index}
+                       to={item.path}
+                       onClick={() => setIsOpen(false)}
+                       className="flex items-center justify-between px-6 py-4 border-b border-gray-700/50 text-gray-200 hover:bg-[#34495e] transition-colors"
+                     >
+                       <div className="flex items-center gap-4">
+                         {item.icon}
+                         <span className="text-sm font-bold tracking-wider">{item.label}</span>
+                       </div>
+                       <ChevronRight size={14} className="opacity-30" />
+                     </Link>
+                   )
+                 ))}
+               </Accordion>
                
                {/* Mobile Auth Links */}
                {session ? (

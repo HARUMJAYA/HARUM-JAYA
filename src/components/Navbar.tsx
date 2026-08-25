@@ -17,10 +17,11 @@ const Navbar = () => {
       icon: <Users size={14} />, 
       path: "/company",
       dropdown: [
-        { label: "Visi & Misi", hash: "#vision" },
-        { label: "Nilai & Strategi", hash: "#values" },
-        { label: "Struktur Organisasi", hash: "#structure" },
-        { label: "Penghargaan", hash: "#awards" },
+        { label: "Profil Utama", path: "/company" },
+        { label: "Visi & Misi", path: "/company#vision" },
+        { label: "Nilai & Strategi", path: "/company#values" },
+        { label: "Struktur Organisasi", path: "/company#structure" },
+        { label: "Penghargaan", path: "/company#awards" },
       ]
     },
     { label: "PROYEK", icon: <Briefcase size={14} />, path: "/projects" },
@@ -39,20 +40,17 @@ const Navbar = () => {
             <li key={index} className="border-r border-gray-700/30">
               {item.dropdown ? (
                 <DropdownMenu>
-                  <DropdownMenuTrigger className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors outline-none ${location.pathname === item.path ? 'text-orange-400 bg-[#34495e]' : ''}`}>
-                    {item.icon}
-                    {item.label}
-                    <ChevronDown size={12} className="opacity-50" />
+                  <DropdownMenuTrigger asChild>
+                    <button className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors outline-none ${location.pathname === item.path ? 'text-orange-400 bg-[#34495e]' : ''}`}>
+                      {item.icon}
+                      {item.label}
+                      <ChevronDown size={12} className="opacity-50" />
+                    </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-[#2c3e50] border-gray-700 text-white min-w-[200px] p-0 rounded-none shadow-xl">
-                    <DropdownMenuItem className="p-0 focus:bg-transparent">
-                      <Link to="/company" className="w-full px-4 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#34495e] hover:text-orange-400 transition-colors border-b border-gray-700/50">
-                        Profil Utama
-                      </Link>
-                    </DropdownMenuItem>
+                  <DropdownMenuContent className="bg-[#2c3e50] border-gray-700 text-white min-w-[200px] p-0 rounded-none shadow-xl z-[60]">
                     {item.dropdown.map((sub, subIdx) => (
-                      <DropdownMenuItem key={subIdx} className="p-0 focus:bg-transparent">
-                        <Link to={`${item.path}${sub.hash}`} className="w-full px-4 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#34495e] hover:text-orange-400 transition-colors border-b border-gray-700/50 last:border-0">
+                      <DropdownMenuItem key={subIdx} asChild className="p-0 focus:bg-transparent focus:text-white">
+                        <Link to={sub.path} className="w-full px-4 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#34495e] hover:text-orange-400 transition-colors border-b border-gray-700/50 last:border-0 block">
                           {sub.label}
                         </Link>
                       </DropdownMenuItem>
