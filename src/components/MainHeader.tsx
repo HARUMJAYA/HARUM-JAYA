@@ -88,7 +88,19 @@ const MainHeader = () => {
         { label: "Daftar Praktek", path: "/career/daftar-praktek" },
       ]
     },
-    { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
+    { 
+      label: "PELATIHAN", 
+      icon: <Monitor size={18} />, 
+      path: "/training",
+      subItems: [
+        { label: "Semua Pelatihan", path: "/training" },
+        { label: "Akademik Tukang", path: "/training/akademik-tukang" },
+        { label: "Bimtek", path: "/training/bimtek" },
+        { label: "Metodologi Pelatihan", path: "/training/metodologi" },
+        { label: "Open Training", path: "/training/open-training" },
+        { label: "Sertifikasi SKK", path: "/training/skk" },
+      ]
+    },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
     { 
       label: "NEWS", 

@@ -24,6 +24,7 @@ import ProjectCategory from "./pages/ProjectCategory";
 import ServiceCategory from "./pages/ServiceCategory";
 import NewsCategory from "./pages/NewsCategory";
 import CareerCategory from "./pages/CareerCategory";
+import TrainingCategory from "./pages/TrainingCategory";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,13 @@ const App = () => (
           <Route path="/career/daftar-praktek" element={<CareerCategory category="Daftar praktek" title="Praktek & Magang" />} />
 
           <Route path="/training" element={<Training />} />
+          {/* Training Categories */}
+          <Route path="/training/akademik-tukang" element={<TrainingCategory category="Akademik Tukang" title="Akademik Tukang" />} />
+          <Route path="/training/bimtek" element={<TrainingCategory category="Bimtek" title="Bimtek Umum" />} />
+          <Route path="/training/metodologi" element={<TrainingCategory category="BIMTEK - Metodologi Pelatihan" title="Metodologi Pelatihan" />} />
+          <Route path="/training/open-training" element={<TrainingCategory category="Open Training (Calon Asesor Kompetensi BNSP)" title="Open Training (Asesor)" />} />
+          <Route path="/training/skk" element={<TrainingCategory category="SKK (Sertifikasi Kompetisi Kerja)" title="Sertifikasi SKK" />} />
+
           <Route path="/guest-house" element={<GuestHouse />} />
           <Route path="/company" element={<Company />} />
           <Route path="/vision-mission" element={<VisionMission />} />

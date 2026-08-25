@@ -64,7 +64,19 @@ const Navbar = () => {
         { label: "Daftar Praktek", path: "/career/daftar-praktek" },
       ]
     },
-    { label: "PELATIHAN", icon: <Monitor size={14} />, path: "/training" },
+    { 
+      label: "PELATIHAN", 
+      icon: <Monitor size={14} />, 
+      path: "/training",
+      dropdown: [
+        { label: "Semua Pelatihan", path: "/training" },
+        { label: "Akademik Tukang", path: "/training/akademik-tukang" },
+        { label: "Bimtek", path: "/training/bimtek" },
+        { label: "Metodologi Pelatihan", path: "/training/metodologi" },
+        { label: "Open Training", path: "/training/open-training" },
+        { label: "Sertifikasi SKK", path: "/training/skk" },
+      ]
+    },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
     { 
       label: "NEWS", 
