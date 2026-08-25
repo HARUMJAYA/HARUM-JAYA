@@ -5,20 +5,37 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Plus, Trash2, Loader2, Upload, ImageIcon, X, Newspaper } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from "@/components/ui/select";
+import { Plus, Trash2, Loader2, Upload, ImageIcon, X, Newspaper, Heart, Camera, CalendarDays } from "lucide-react";
 import { showSuccess, showError } from "@/utils/toast";
 
 const NewsManager = () => {
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeTab, setActiveTab] = useState("Semua");
   
   // Form state
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
+  const [category, setCategory] = useState("Berita");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  const categories = [
+    { label: "Berita", icon: <Newspaper size={14} /> },
+    { label: "CSR", icon: <Heart size={14} /> },
+    { label: "Kegiatan", icon: <CalendarDays size={14} /> },
+    { label: "Galeri", icon: <Camera size={14} /> }
+  ];
 
   const fetchNews = async () => {
     setLoading(true);
@@ -31,7 +48,7 @@ const NewsManager = () => {
       if (error) throw error;
       setNews(data || []);
     } catch (err: any) {
-      showError("Gagal mengambil data berita: " + err.message);
+      showError("Gagal mengambil data: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -57,14 +74,15 @@ const NewsManager = () => {
     setTitle("");
     setAuthor("");
     setContent("");
+    setCategory("Berita");
     setImageFile(null);
     setPreviewUrl(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !author || !content) {
-      showError("Harap isi Judul, Penulis, dan Konten");
+    if (!title || !author || (category !== "Galeri" && !content)) {
+      showError("Harap lengkapi data yang wajib diisi");
       return;
     }
 
@@ -72,7 +90,6 @@ const NewsManager = () => {
     try {
       let publicUrl = "";
 
-      // Upload Gambar jika ada
       if (imageFile) {
         const fileExt = imageFile.name.split('.').pop();
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
@@ -91,30 +108,30 @@ const NewsManager = () => {
         publicUrl = url;
       }
 
-      // Simpan data ke tabel news
       const { error: insertError } = await supabase.from("news").insert([
         { 
           title, 
           author, 
           content,
+          category,
           image_url: publicUrl || null
         }
       ]);
 
       if (insertError) throw insertError;
 
-      showSuccess("Berita berhasil diterbitkan");
+      showSuccess(`${category} berhasil disimpan`);
       clearForm();
       fetchNews();
     } catch (error: any) {
-      showError("Gagal menyimpan berita: " + (error.message || "Terjadi kesalahan"));
+      showError("Gagal menyimpan: " + (error.message || "Terjadi kesalahan"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string, imageUrl: string) => {
-    if (!confirm("Apakah Anda yakin ingin menghapus berita ini?")) return;
+    if (!confirm("Apakah Anda yakin ingin menghapus data ini?")) return;
 
     try {
       const { error: deleteError } = await supabase.from("news").delete().eq("id", id);
@@ -127,19 +144,23 @@ const NewsManager = () => {
         }
       }
 
-      showSuccess("Berita berhasil dihapus");
+      showSuccess("Data berhasil dihapus");
       fetchNews();
     } catch (err: any) {
       showError("Gagal menghapus: " + err.message);
     }
   };
 
+  const filteredNews = activeTab === "Semua" 
+    ? news 
+    : news.filter(item => item.category === activeTab);
+
   return (
     <div className="space-y-8">
       <Card className="border-none shadow-sm">
         <CardHeader className="bg-gray-50/50 border-b">
           <CardTitle className="text-lg flex items-center gap-2 text-gray-700">
-            <Newspaper size={20} className="text-[#4834d4]" /> Tulis Berita Baru
+            <Plus size={20} className="text-[#4834d4]" /> Tambah Konten Baru
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-6">
@@ -147,27 +168,46 @@ const NewsManager = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-600">Judul Berita</label>
+                  <label className="text-sm font-semibold text-gray-600">Judul Konten</label>
                   <Input 
-                    placeholder="Masukkan judul berita..." 
+                    placeholder="Masukkan judul berita/kegiatan..." 
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="bg-gray-50"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-600">Penulis / Sumber</label>
-                  <Input 
-                    placeholder="Contoh: Admin atau Nama Penulis" 
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
-                    className="bg-gray-50"
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-gray-600">Penulis / Sumber</label>
+                    <Input 
+                      placeholder="Admin" 
+                      value={author}
+                      onChange={(e) => setAuthor(e.target.value)}
+                      className="bg-gray-50"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-gray-600">Kategori</label>
+                    <Select onValueChange={setCategory} value={category}>
+                      <SelectTrigger className="bg-gray-50">
+                        <SelectValue placeholder="Pilih Kategori" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categories.map((cat) => (
+                          <SelectItem key={cat.label} value={cat.label}>
+                            <div className="flex items-center gap-2">
+                              {cat.icon} {cat.label}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-600">Gambar Utama (Opsional)</label>
+                <label className="text-sm font-semibold text-gray-600">Gambar Utama / Foto Galeri</label>
                 <div className={`relative border-2 border-dashed rounded-xl min-h-[145px] flex flex-col items-center justify-center p-4 transition-all ${
                   previewUrl ? 'border-[#4834d4]/30 bg-[#4834d4]/5' : 'border-gray-200 bg-gray-50/30'
                 }`}>
@@ -196,12 +236,14 @@ const NewsManager = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-600">Konten Berita</label>
+              <label className="text-sm font-semibold text-gray-600">
+                Konten / Deskripsi {category === 'Galeri' && '(Opsional)'}
+              </label>
               <Textarea 
-                placeholder="Tulis isi berita di sini..." 
+                placeholder="Tulis isi berita atau keterangan kegiatan di sini..." 
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="bg-gray-50 min-h-[200px]"
+                className="bg-gray-50 min-h-[150px]"
               />
             </div>
 
@@ -213,7 +255,7 @@ const NewsManager = () => {
               {isSubmitting ? (
                 <><Loader2 className="animate-spin mr-2" size={18} /> MEMPROSES...</>
               ) : (
-                <><Plus className="mr-2" size={18} /> TERBITKAN BERITA</>
+                <><Plus className="mr-2" size={18} /> SIMPAN {category.toUpperCase()}</>
               )}
             </Button>
           </form>
@@ -221,29 +263,38 @@ const NewsManager = () => {
       </Card>
 
       <Card className="border-none shadow-sm">
-        <CardHeader className="bg-gray-50/50 border-b">
-          <CardTitle className="text-lg text-gray-700">Arsip Berita</CardTitle>
+        <CardHeader className="bg-gray-50/50 border-b flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <CardTitle className="text-lg text-gray-700">Daftar Konten</CardTitle>
+          <Tabs defaultValue="Semua" className="w-full sm:w-auto" onValueChange={setActiveTab}>
+            <TabsList className="bg-white border">
+              <TabsTrigger value="Semua">Semua</TabsTrigger>
+              {categories.map(cat => (
+                <TabsTrigger key={cat.label} value={cat.label}>{cat.label}</TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
         </CardHeader>
         <CardContent className="p-0">
           {loading ? (
             <div className="flex flex-col items-center justify-center p-12">
               <Loader2 className="animate-spin text-[#4834d4]" size={32} />
             </div>
-          ) : news.length === 0 ? (
-            <div className="text-center py-12 text-gray-500 italic">Belum ada berita yang diterbitkan.</div>
+          ) : filteredNews.length === 0 ? (
+            <div className="text-center py-12 text-gray-500 italic">Belum ada konten dalam kategori {activeTab}.</div>
           ) : (
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader className="bg-gray-50/50">
                   <TableRow>
-                    <TableHead className="w-[80px]">GAMBAR</TableHead>
+                    <TableHead className="w-[80px]">MEDIA</TableHead>
                     <TableHead>JUDUL & PENULIS</TableHead>
+                    <TableHead>KATEGORI</TableHead>
                     <TableHead>TANGGAL</TableHead>
                     <TableHead className="text-right">AKSI</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {news.map((item) => (
+                  {filteredNews.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell>
                         <div className="w-12 h-12 rounded bg-gray-100 overflow-hidden flex items-center justify-center">
@@ -257,6 +308,16 @@ const NewsManager = () => {
                       <TableCell>
                         <p className="font-bold text-gray-800 text-sm line-clamp-1">{item.title}</p>
                         <p className="text-[10px] text-gray-500 uppercase font-medium">Oleh: {item.author}</p>
+                      </TableCell>
+                      <TableCell>
+                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${
+                          item.category === 'CSR' ? 'bg-pink-50 text-pink-600 border-pink-100' :
+                          item.category === 'Kegiatan' ? 'bg-orange-50 text-orange-600 border-orange-100' :
+                          item.category === 'Galeri' ? 'bg-purple-50 text-purple-600 border-purple-100' :
+                          'bg-blue-50 text-blue-600 border-blue-100'
+                        }`}>
+                          {item.category?.toUpperCase() || 'BERITA'}
+                        </span>
                       </TableCell>
                       <TableCell className="text-xs text-gray-500">
                         {new Date(item.published_at).toLocaleDateString('id-ID')}
