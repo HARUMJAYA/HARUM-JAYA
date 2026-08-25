@@ -23,6 +23,7 @@ import Awards from "./pages/Awards";
 import ProjectCategory from "./pages/ProjectCategory";
 import ServiceCategory from "./pages/ServiceCategory";
 import NewsCategory from "./pages/NewsCategory";
+import CareerCategory from "./pages/CareerCategory";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,12 @@ const App = () => (
           <Route path="/news/galeri" element={<NewsCategory category="Galeri" title="Galeri Foto" />} />
 
           <Route path="/career" element={<Career />} />
+          {/* Career Categories */}
+          <Route path="/career/budaya" element={<CareerCategory category="Budaya kami" title="Budaya Kerja" />} />
+          <Route path="/career/area" element={<CareerCategory category="Karir Area" title="Area Penempatan" />} />
+          <Route path="/career/daftar-kerja" element={<CareerCategory category="Daftar kerja" title="Lowongan Pekerjaan" />} />
+          <Route path="/career/daftar-praktek" element={<CareerCategory category="Daftar praktek" title="Praktek & Magang" />} />
+
           <Route path="/training" element={<Training />} />
           <Route path="/guest-house" element={<GuestHouse />} />
           <Route path="/company" element={<Company />} />

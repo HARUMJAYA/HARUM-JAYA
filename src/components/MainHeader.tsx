@@ -76,7 +76,18 @@ const MainHeader = () => {
         { label: "Program Magang", path: "/services/magang" },
       ]
     },
-    { label: "KARIR", icon: <UserPlus size={18} />, path: "/career" },
+    { 
+      label: "KARIR", 
+      icon: <UserPlus size={18} />, 
+      path: "/career",
+      subItems: [
+        { label: "Semua Karir", path: "/career" },
+        { label: "Budaya Kami", path: "/career/budaya" },
+        { label: "Karir Area", path: "/career/area" },
+        { label: "Daftar Kerja", path: "/career/daftar-kerja" },
+        { label: "Daftar Praktek", path: "/career/daftar-praktek" },
+      ]
+    },
     { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
     { 
