@@ -1,12 +1,28 @@
 import { Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, Search, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const location = useLocation();
   
   const navItems = [
     { label: "HOME", icon: <Home size={14} />, path: "/" },
-    { label: "PERUSAHAAN", icon: <Users size={14} />, path: "/company" },
+    { 
+      label: "PERUSAHAAN", 
+      icon: <Users size={14} />, 
+      path: "/company",
+      dropdown: [
+        { label: "Visi & Misi", hash: "#vision" },
+        { label: "Nilai & Strategi", hash: "#values" },
+        { label: "Struktur Organisasi", hash: "#structure" },
+        { label: "Penghargaan", hash: "#awards" },
+      ]
+    },
     { label: "PROYEK", icon: <Briefcase size={14} />, path: "/projects" },
     { label: "PELAYANAN", icon: <Cog size={14} />, path: "/services" },
     { label: "KARIR", icon: <UserPlus size={14} />, path: "/career" },
@@ -21,13 +37,37 @@ const Navbar = () => {
         <ul className="flex flex-wrap items-center">
           {navItems.map((item, index) => (
             <li key={index} className="border-r border-gray-700/30">
-              <Link 
-                to={item.path}
-                className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors ${location.pathname === item.path ? 'text-orange-400 bg-[#34495e]' : ''}`}
-              >
-                {item.icon}
-                {item.label}
-              </Link>
+              {item.dropdown ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors outline-none ${location.pathname === item.path ? 'text-orange-400 bg-[#34495e]' : ''}`}>
+                    {item.icon}
+                    {item.label}
+                    <ChevronDown size={12} className="opacity-50" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-[#2c3e50] border-gray-700 text-white min-w-[200px] p-0 rounded-none shadow-xl">
+                    <DropdownMenuItem className="p-0 focus:bg-transparent">
+                      <Link to="/company" className="w-full px-4 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#34495e] hover:text-orange-400 transition-colors border-b border-gray-700/50">
+                        Profil Utama
+                      </Link>
+                    </DropdownMenuItem>
+                    {item.dropdown.map((sub, subIdx) => (
+                      <DropdownMenuItem key={subIdx} className="p-0 focus:bg-transparent">
+                        <Link to={`${item.path}${sub.hash}`} className="w-full px-4 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#34495e] hover:text-orange-400 transition-colors border-b border-gray-700/50 last:border-0">
+                          {sub.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link 
+                  to={item.path}
+                  className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors ${location.pathname === item.path ? 'text-orange-400 bg-[#34495e]' : ''}`}
+                >
+                  {item.icon}
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

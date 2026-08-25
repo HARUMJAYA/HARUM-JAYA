@@ -40,7 +40,7 @@ const Company = () => {
           <div className="flex justify-center p-20"><Loader2 className="animate-spin text-orange-500" size={40} /></div>
         ) : (
           <div className="space-y-32">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center" id="vision">
               <div>
                 <h2 className="text-3xl font-bold italic uppercase flex items-center gap-4 mb-8 text-gray-800">
                   <Target className="text-orange-500" size={32} /> Visi & Misi
@@ -56,7 +56,7 @@ const Company = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50 p-12 rounded-2xl">
+              <div className="bg-gray-50 p-12 rounded-2xl" id="awards">
                 <h2 className="text-3xl font-bold italic uppercase flex items-center gap-4 mb-8 text-gray-800">
                   <Award className="text-orange-500" size={32} /> Penghargaan
                 </h2>
@@ -65,7 +65,7 @@ const Company = () => {
             </div>
 
             {data.structure_url && (
-              <div className="text-center bg-gray-50 p-16 rounded-3xl">
+              <div className="text-center bg-gray-50 p-16 rounded-3xl" id="structure">
                 <h2 className="text-3xl font-bold italic uppercase flex items-center justify-center gap-4 mb-12 text-gray-800">
                   <LayoutTemplate className="text-orange-500" size={32} /> Struktur Organisasi
                 </h2>
@@ -75,7 +75,7 @@ const Company = () => {
               </div>
             )}
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16" id="values">
                <div className="space-y-6">
                  <h2 className="text-3xl font-bold italic uppercase text-gray-800 border-b-2 border-orange-500 pb-2 w-fit">Nilai Perusahaan</h2>
                  <p className="text-gray-600 leading-relaxed whitespace-pre-line">{data.values}</p>
