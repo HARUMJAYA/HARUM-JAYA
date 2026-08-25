@@ -38,7 +38,20 @@ const Navbar = () => {
         { label: "Pekerjaan Umum", path: "/projects/umum" },
       ]
     },
-    { label: "PELAYANAN", icon: <Cog size={14} />, path: "/services" },
+    { 
+      label: "PELAYANAN", 
+      icon: <Cog size={14} />, 
+      path: "/services",
+      dropdown: [
+        { label: "Semua Layanan", path: "/services" },
+        { label: "Kontraktor Umum", path: "/services/umum" },
+        { label: "Rancang & Bangun", path: "/services/rancang-bangun" },
+        { label: "Kontraktor Sipil", path: "/services/sipil" },
+        { label: "Teknologi & Inovasi", path: "/services/teknologi" },
+        { label: "Kontraktor Gedung", path: "/services/gedung" },
+        { label: "Program Magang", path: "/services/magang" },
+      ]
+    },
     { label: "KARIR", icon: <UserPlus size={14} />, path: "/career" },
     { label: "PELATIHAN", icon: <Monitor size={14} />, path: "/training" },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },

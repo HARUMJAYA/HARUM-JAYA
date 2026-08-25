@@ -19,14 +19,16 @@ import Strategy from "./pages/Strategy";
 import Organization from "./pages/Organization";
 import Awards from "./pages/Awards";
 
-// Project Category Pages
+// Category Pages
 import ProjectCategory from "./pages/ProjectCategory";
+import ServiceCategory from "./pages/ServiceCategory";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Toaster />
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -45,6 +47,14 @@ const App = () => (
           <Route path="/projects/umum" element={<ProjectCategory category="pekerjaan umum" title="Pekerjaan Umum" />} />
 
           <Route path="/services" element={<Services />} />
+          {/* Service Categories */}
+          <Route path="/services/umum" element={<ServiceCategory category="KONTRAKTOR UMUM" title="Kontraktor Umum" />} />
+          <Route path="/services/rancang-bangun" element={<ServiceCategory category="RANCANG & BANGUN" title="Rancang & Bangun" />} />
+          <Route path="/services/sipil" element={<ServiceCategory category="KONTRAKTOR SIPIL" title="Kontraktor Sipil" />} />
+          <Route path="/services/teknologi" element={<ServiceCategory category="TEKNOLOGI & INOVASI" title="Teknologi & Inovasi" />} />
+          <Route path="/services/gedung" element={<ServiceCategory category="KONTRAKTOR GEDUNG" title="Kontraktor Gedung" />} />
+          <Route path="/services/magang" element={<ServiceCategory category="PROGRAM MAGANG" title="Program Magang" />} />
+
           <Route path="/news" element={<News />} />
           <Route path="/career" element={<Career />} />
           <Route path="/training" element={<Training />} />
