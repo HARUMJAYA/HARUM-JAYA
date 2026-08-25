@@ -24,7 +24,20 @@ const Navbar = () => {
         { label: "Penghargaan", path: "/awards" },
       ]
     },
-    { label: "PROYEK", icon: <Briefcase size={14} />, path: "/projects" },
+    { 
+      label: "PROYEK", 
+      icon: <Briefcase size={14} />, 
+      path: "/projects",
+      dropdown: [
+        { label: "Semua Proyek", path: "/projects" },
+        { label: "Eksterior", path: "/projects/eksterior" },
+        { label: "Interior", path: "/projects/interior" },
+        { label: "Pekerjaan Gedung", path: "/projects/gedung" },
+        { label: "Rancang & Bangun", path: "/projects/rancang-bangun" },
+        { label: "Pekerjaan Sipil", path: "/projects/sipil" },
+        { label: "Pekerjaan Umum", path: "/projects/umum" },
+      ]
+    },
     { label: "PELAYANAN", icon: <Cog size={14} />, path: "/services" },
     { label: "KARIR", icon: <UserPlus size={14} />, path: "/career" },
     { label: "PELATIHAN", icon: <Monitor size={14} />, path: "/training" },
@@ -41,7 +54,7 @@ const Navbar = () => {
               {item.dropdown ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors outline-none ${location.pathname === item.path ? 'text-orange-400 bg-[#34495e]' : ''}`}>
+                    <button className={`flex items-center gap-2 px-4 py-4 text-[11px] font-bold tracking-wider cursor-pointer hover:bg-[#34495e] transition-colors outline-none ${location.pathname.startsWith(item.path) ? 'text-orange-400 bg-[#34495e]' : ''}`}>
                       {item.icon}
                       {item.label}
                       <ChevronDown size={12} className="opacity-50" />

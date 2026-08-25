@@ -19,6 +19,9 @@ import Strategy from "./pages/Strategy";
 import Organization from "./pages/Organization";
 import Awards from "./pages/Awards";
 
+// Project Category Pages
+import ProjectCategory from "./pages/ProjectCategory";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,6 +35,15 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/projects" element={<Projects />} />
+          
+          {/* Project Categories */}
+          <Route path="/projects/eksterior" element={<ProjectCategory category="eksterior" title="Proyek Eksterior" />} />
+          <Route path="/projects/interior" element={<ProjectCategory category="interior" title="Proyek Interior" />} />
+          <Route path="/projects/gedung" element={<ProjectCategory category="pekerjaan gedung" title="Pekerjaan Gedung" />} />
+          <Route path="/projects/rancang-bangun" element={<ProjectCategory category="pekerjaan rancang bangun" title="Rancang & Bangun" />} />
+          <Route path="/projects/sipil" element={<ProjectCategory category="pekerjaan sipil" title="Pekerjaan Sipil" />} />
+          <Route path="/projects/umum" element={<ProjectCategory category="pekerjaan umum" title="Pekerjaan Umum" />} />
+
           <Route path="/services" element={<Services />} />
           <Route path="/news" element={<News />} />
           <Route path="/career" element={<Career />} />

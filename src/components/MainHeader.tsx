@@ -48,7 +48,20 @@ const MainHeader = () => {
         { label: "Penghargaan", path: "/awards" },
       ]
     },
-    { label: "PROYEK", icon: <Briefcase size={18} />, path: "/projects" },
+    { 
+      label: "PROYEK", 
+      icon: <Briefcase size={18} />, 
+      path: "/projects",
+      subItems: [
+        { label: "Semua Proyek", path: "/projects" },
+        { label: "Eksterior", path: "/projects/eksterior" },
+        { label: "Interior", path: "/projects/interior" },
+        { label: "Pekerjaan Gedung", path: "/projects/gedung" },
+        { label: "Rancang & Bangun", path: "/projects/rancang-bangun" },
+        { label: "Pekerjaan Sipil", path: "/projects/sipil" },
+        { label: "Pekerjaan Umum", path: "/projects/umum" },
+      ]
+    },
     { label: "PELAYANAN", icon: <Cog size={18} />, path: "/services" },
     { label: "KARIR", icon: <UserPlus size={18} />, path: "/career" },
     { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
