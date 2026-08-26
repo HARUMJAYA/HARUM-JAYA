@@ -1,4 +1,4 @@
-import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, ChevronRight, Lock, LogOut, LayoutDashboard, ChevronDown } from "lucide-react";
+import { Mail, Phone, Menu, Search, Home, Users, Briefcase, Cog, UserPlus, Newspaper, ChevronRight, Lock, LogOut, LayoutDashboard, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useState, useEffect } from "react";
@@ -77,8 +77,6 @@ const MainHeader = () => {
       ]
     },
     { label: "KARIR", icon: <UserPlus size={18} />, path: "/career" },
-    { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
-    { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
     { label: "NEWS", icon: <Newspaper size={18} />, path: "/news" },
   ];
 

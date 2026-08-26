@@ -13,8 +13,6 @@ import {
   Building2, 
   Cog, 
   UserPlus, 
-  Monitor, 
-  Hotel,
   ChevronRight,
   ExternalLink,
   Eye,
@@ -26,8 +24,6 @@ import NewsManager from "@/components/admin/NewsManager";
 import CompanyManager from "@/components/admin/CompanyManager";
 import ServiceManager from "@/components/admin/ServiceManager";
 import CareerManager from "@/components/admin/CareerManager";
-import TrainingManager from "@/components/admin/TrainingManager";
-import GuestHouseManager from "@/components/admin/GuestHouseManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -71,8 +67,6 @@ const Admin = () => {
     { label: "Berita", icon: <Newspaper size={20} /> },
     { label: "Pelayanan", icon: <Cog size={20} /> },
     { label: "Karir", icon: <UserPlus size={20} /> },
-    { label: "Pelatihan", icon: <Monitor size={20} /> },
-    { label: "Guest House", icon: <Hotel size={20} /> },
     { label: "Pengaturan", icon: <Settings size={20} /> },
   ];
 
@@ -168,33 +162,12 @@ const Admin = () => {
                   <ExternalLink size={16} /> Pratinjau Situs
                 </Button>
               </Link>
-              {currentTab === "Dashboard" && (
-                <div className="hidden sm:flex gap-2">
-                  <Button className="bg-[#4834d4] hover:bg-[#341f97]" onClick={() => setCurrentTab("Pelatihan")}>
-                    <Monitor size={18} className="mr-2" /> Kelola Pelatihan
-                  </Button>
-                  <Button variant="outline" onClick={() => setCurrentTab("Proyek")}>
-                    <Briefcase size={18} className="mr-2" /> Proyek
-                  </Button>
-                </div>
-              )}
             </div>
           </header>
 
-          {/* Content Switching Logic */}
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             {currentTab === "Dashboard" && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="cursor-pointer hover:shadow-lg transition-all group" onClick={() => setCurrentTab("Pelatihan")}>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Manajemen Pelatihan</CardTitle>
-                    <Monitor className="h-4 w-4 text-muted-foreground group-hover:text-[#4834d4] transition-colors" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold text-[#4834d4]">Update</div>
-                    <p className="text-xs text-muted-foreground">Bimtek, SKK & Akademik Tukang</p>
-                  </CardContent>
-                </Card>
                 <Card className="cursor-pointer hover:shadow-lg transition-all group" onClick={() => setCurrentTab("Karir")}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Manajemen Karir</CardTitle>
@@ -215,6 +188,16 @@ const Admin = () => {
                     <p className="text-xs text-muted-foreground">Kontraktor & Program Magang</p>
                   </CardContent>
                 </Card>
+                <Card className="cursor-pointer hover:shadow-lg transition-all group" onClick={() => setCurrentTab("Proyek")}>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Manajemen Proyek</CardTitle>
+                    <Briefcase className="h-4 w-4 text-muted-foreground group-hover:text-orange-500 transition-colors" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-orange-500">Update</div>
+                    <p className="text-xs text-muted-foreground">Inventaris Pekerjaan</p>
+                  </CardContent>
+                </Card>
               </div>
             )}
 
@@ -223,8 +206,6 @@ const Admin = () => {
             {currentTab === "Berita" && <NewsManager />}
             {currentTab === "Pelayanan" && <ServiceManager />}
             {currentTab === "Karir" && <CareerManager />}
-            {currentTab === "Pelatihan" && <TrainingManager />}
-            {currentTab === "Guest House" && <GuestHouseManager />}
 
             {currentTab === "Pengaturan" && (
               <div className="bg-white rounded-lg shadow-sm border p-12 text-center">

@@ -38,24 +38,15 @@ const Index = () => {
         <ProjectSection />
         <NewsSection />
 
-        {/* Training & Career CTA */}
+        {/* Career CTA Only */}
         <section className="py-16 bg-[#2c3e50] text-white">
-          <div className="container mx-auto max-w-7xl px-4 flex flex-col md:flex-row gap-8">
-            <div className="flex-1 bg-[#34495e] p-10 border-l-4 border-orange-500">
-              <h3 className="text-2xl font-bold mb-4 italic">PROGRAM PELATIHAN</h3>
-              <p className="text-gray-300 text-sm mb-6 leading-relaxed">Tingkatkan kompetensi Anda melalui program sertifikasi SKK, Bimtek, dan Akademik Tukang bersama mentor profesional kami.</p>
-              <Link to="/training">
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
-                  Info Pelatihan
-                </button>
-              </Link>
-            </div>
-            <div className="flex-1 bg-[#34495e] p-10 border-l-4 border-blue-500">
+          <div className="container mx-auto max-w-2xl px-4 text-center">
+            <div className="bg-[#34495e] p-10 border-t-4 border-blue-500 rounded-lg">
               <h3 className="text-2xl font-bold mb-4 italic">KARIR & BUDAYA</h3>
               <p className="text-gray-300 text-sm mb-6 leading-relaxed">Bergabunglah dengan tim inovatif kami. Kami mencari talenta terbaik untuk membangun infrastruktur Indonesia yang lebih baik.</p>
               <Link to="/career">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
-                  Cari Lowongan
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-3 text-xs font-bold uppercase tracking-widest transition-colors rounded">
+                  Cari Lowongan Pekerjaan
                 </button>
               </Link>
             </div>
@@ -69,7 +60,7 @@ const Index = () => {
             <div>
               <h4 className="text-xl font-bold italic mb-6">CV IM</h4>
               <p className="text-gray-500 text-sm leading-relaxed">
-                We engineer your plan to a reality. Perusahaan jasa konstruksi, arsitektur, dan pusat pengembangan kompetensi SDM konstruksi.
+                We engineer your plan to a reality. Perusahaan jasa konstruksi, arsitektur.
               </p>
             </div>
             <div>
