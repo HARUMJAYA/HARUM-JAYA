@@ -41,34 +41,36 @@ const Strategy = () => {
         ) : (
           <div className="space-y-16">
             {/* Foto Tim & Review Section */}
-            <div className="space-y-6">
-              <div className="relative group overflow-hidden rounded-xl shadow-xl border-4 border-gray-100">
+            <div className="space-y-6 flex flex-col items-center">
+              {/* Image container reduced to max-w-2xl */}
+              <div className="relative group overflow-hidden rounded-xl shadow-xl border-4 border-gray-100 max-w-2xl w-full">
                 <img 
                   src="/team-action.jpg" 
                   alt="Tim CV INGAT MATI sedang bekerja" 
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 md:p-10">
-                  <h2 className="text-3xl md:text-5xl font-black italic text-white uppercase tracking-tighter mb-4 drop-shadow-md">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 md:p-8">
+                  <h2 className="text-2xl md:text-4xl font-black italic text-white uppercase tracking-tighter drop-shadow-md">
                     CV INGAT MATI
                   </h2>
                 </div>
               </div>
               
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-orange-50 p-6 rounded-xl border border-orange-100">
+              {/* Review Section with purple-blue button */}
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-gray-50 p-6 rounded-xl border border-gray-100 w-full max-w-2xl">
                 <div className="text-center md:text-left">
-                  <h3 className="font-bold text-gray-800 uppercase tracking-wide">Kepuasan Anda adalah Prioritas Kami</h3>
-                  <p className="text-sm text-gray-600">Bantu kami meningkatkan layanan dengan memberikan ulasan Anda.</p>
+                  <h3 className="font-bold text-gray-800 uppercase tracking-wide text-sm">Kepuasan Anda adalah Prioritas Kami</h3>
+                  <p className="text-xs text-gray-500">Bantu kami meningkatkan layanan dengan memberikan ulasan Anda.</p>
                 </div>
                 <a 
                   href="https://www.google.com/search?q=CV+INGAT+MATI+Banda+Aceh#lrd=0x3040375a00000001:0x0,3" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-[#f39c12] hover:bg-[#e67e22] text-white px-8 py-4 rounded font-black uppercase tracking-widest text-xs transition-all shadow-lg hover:-translate-y-1"
+                  className="flex items-center gap-2 bg-[#4834d4] hover:bg-[#341f97] text-white px-6 py-3 rounded font-black uppercase tracking-widest text-[10px] transition-all shadow-lg hover:-translate-y-1"
                 >
-                  <Star size={18} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
                   BERI ULASAN GOOGLE
-                  <ExternalLink size={14} />
+                  <ExternalLink size={12} />
                 </a>
               </div>
             </div>
@@ -78,7 +80,7 @@ const Strategy = () => {
                 <h2 className="text-2xl font-bold italic uppercase flex items-center gap-3 text-gray-800">
                   <ShieldCheck className="text-orange-500" size={28} /> Nilai Perusahaan
                 </h2>
-                <div className="bg-gray-50 p-8 border-l-4 border-orange-500 rounded-r-lg">
+                <div className="bg-gray-50 p-8 border-l-4 border-orange-500 rounded-r-lg shadow-sm">
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line italic">
                     {data.values || "Integritas, Kualitas, dan Profesionalisme adalah fondasi utama dalam setiap langkah operasional kami."}
                   </p>
@@ -89,7 +91,7 @@ const Strategy = () => {
                 <h2 className="text-2xl font-bold italic uppercase flex items-center gap-3 text-gray-800">
                   <TrendingUp className="text-[#2c3e50]" size={28} /> Strategi Kami
                 </h2>
-                <div className="bg-gray-50 p-8 border-l-4 border-[#2c3e50] rounded-r-lg">
+                <div className="bg-gray-50 p-8 border-l-4 border-[#2c3e50] rounded-r-lg shadow-sm">
                   <p className="text-gray-600 leading-relaxed whitespace-pre-line">
                     {data.strategy || "Kami fokus pada pengembangan SDM yang kompeten serta pemanfaatan teknologi konstruksi terkini untuk efisiensi dan ketepatan proyek."}
                   </p>
