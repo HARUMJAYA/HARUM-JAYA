@@ -76,44 +76,10 @@ const MainHeader = () => {
         { label: "Program Magang", path: "/services/magang" },
       ]
     },
-    { 
-      label: "KARIR", 
-      icon: <UserPlus size={18} />, 
-      path: "/career",
-      subItems: [
-        { label: "Semua Karir", path: "/career" },
-        { label: "Budaya Kami", path: "/career/budaya" },
-        { label: "Karir Area", path: "/career/area" },
-        { label: "Daftar Kerja", path: "/career/daftar-kerja" },
-        { label: "Daftar Praktek", path: "/career/daftar-praktek" },
-      ]
-    },
-    { 
-      label: "PELATIHAN", 
-      icon: <Monitor size={18} />, 
-      path: "/training",
-      subItems: [
-        { label: "Semua Pelatihan", path: "/training" },
-        { label: "Akademik Tukang", path: "/training/akademik-tukang" },
-        { label: "Bimtek", path: "/training/bimtek" },
-        { label: "Metodologi Pelatihan", path: "/training/metodologi" },
-        { label: "Open Training", path: "/training/open-training" },
-        { label: "Sertifikasi SKK", path: "/training/skk" },
-      ]
-    },
+    { label: "KARIR", icon: <UserPlus size={18} />, path: "/career" },
+    { label: "PELATIHAN", icon: <Monitor size={18} />, path: "/training" },
     { label: "GUEST HOUSE", icon: null, path: "/guest-house" },
-    { 
-      label: "NEWS", 
-      icon: <Newspaper size={18} />, 
-      path: "/news",
-      subItems: [
-        { label: "Semua Berita", path: "/news" },
-        { label: "Berita Utama", path: "/news/berita" },
-        { label: "CSR", path: "/news/csr" },
-        { label: "Kegiatan", path: "/news/kegiatan" },
-        { label: "Galeri Foto", path: "/news/galeri" },
-      ]
-    },
+    { label: "NEWS", icon: <Newspaper size={18} />, path: "/news" },
   ];
 
   return (
@@ -127,9 +93,12 @@ const MainHeader = () => {
             </button>
           </SheetTrigger>
           <SheetContent side="left" className="bg-[#2c3e50] text-white p-0 border-none w-[300px] flex flex-col">
-             <div className="p-6 border-b border-gray-700 bg-[#1a252f]">
-               <h2 className="text-xl font-bold italic">CV IM</h2>
-               <p className="text-[10px] text-red-500 italic">Engineering reality</p>
+             <div className="p-6 border-b border-gray-700 bg-[#1a252f] flex items-center gap-3">
+               <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain bg-white rounded-sm p-1" />
+               <div>
+                 <h2 className="text-xl font-bold italic">CV IM</h2>
+                 <p className="text-[10px] text-red-500 italic">Engineering reality</p>
+               </div>
              </div>
              <nav className="flex-1 flex flex-col overflow-y-auto">
                <Accordion type="single" collapsible className="w-full">
@@ -217,14 +186,12 @@ const MainHeader = () => {
           </SheetContent>
         </Sheet>
 
-        <div className="flex flex-col items-center">
-          <h1 className="text-xl font-serif font-bold text-[#333] tracking-tight">
-            CV IM
-          </h1>
-          <p className="text-[8px] text-red-600 italic font-medium -mt-1">
+        <Link to="/" className="flex flex-col items-center">
+          <img src="/logo.png" alt="CV IM" className="h-8 w-auto object-contain mb-0.5" />
+          <p className="text-[8px] text-red-600 italic font-medium">
             We engineer your plan to a reality
           </p>
-        </div>
+        </Link>
 
         <button className="text-gray-800">
           <Search size={24} strokeWidth={1.5} />
@@ -234,14 +201,17 @@ const MainHeader = () => {
       {/* Desktop Contact Header */}
       <div className="hidden lg:block py-6 px-4">
         <div className="container mx-auto max-w-7xl flex justify-between items-center">
-          <div className="flex flex-col">
-            <h1 className="text-4xl font-bold text-[#333] tracking-tighter italic">
-              CV IM
-            </h1>
-            <p className="text-red-600 text-sm italic font-medium -mt-1 border-t-2 border-gray-100 pt-1">
-              We engineer your plan to a reality
-            </p>
-          </div>
+          <Link to="/" className="flex items-center gap-4 group">
+            <img src="/logo.png" alt="Logo" className="h-16 w-auto object-contain group-hover:scale-105 transition-transform" />
+            <div className="flex flex-col border-l-2 border-gray-100 pl-4">
+              <h1 className="text-4xl font-bold text-[#333] tracking-tighter italic leading-none mb-1">
+                CV IM
+              </h1>
+              <p className="text-red-600 text-sm italic font-medium uppercase tracking-tight">
+                We engineer your plan to a reality
+              </p>
+            </div>
+          </Link>
 
           <div className="flex gap-8">
             <div className="flex items-center gap-3">
