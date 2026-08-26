@@ -4,7 +4,7 @@ import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
 import { MadeWithDyad } from "@/components/made-with-dyad";
-import { Cog, ChevronRight, Loader2 } from "lucide-react";
+import { Cog, ChevronRight, Loader2, ImageIcon } from "lucide-react";
 import ContactFormSection from "@/components/public/ContactFormSection";
 
 const Services = () => {
@@ -37,14 +37,25 @@ const Services = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services.map((service) => (
-              <div key={service.id} className="group p-8 border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl transition-all relative">
-                <div className="text-orange-500 mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Cog size={40} strokeWidth={1.5} />
+              <div key={service.id} className="group border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-2xl transition-all overflow-hidden flex flex-col">
+                <div className="relative h-56 overflow-hidden bg-gray-200">
+                  {service.image_url ? (
+                    <img src={service.image_url} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <ImageIcon size={48} className="opacity-20" />
+                    </div>
+                  )}
+                  <div className="absolute top-4 left-4 bg-orange-500 text-white p-2 rounded shadow-lg">
+                    <Cog size={20} strokeWidth={2} className="animate-spin-slow" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4 uppercase italic tracking-tight">{service.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-8 line-clamp-4">{service.description || "Kami menawarkan solusi profesional dengan standar industri terbaik untuk mendukung keberhasilan proyek Anda."}</p>
-                <div className="inline-flex items-center gap-2 text-[10px] font-bold text-gray-400 group-hover:text-orange-500 tracking-widest uppercase transition-colors">
-                  Kategori: {service.category} <ChevronRight size={12} />
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 uppercase italic tracking-tight">{service.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-8 line-clamp-4">{service.description || "Kami menawarkan solusi profesional dengan standar industri terbaik untuk mendukung keberhasilan proyek Anda."}</p>
+                  <div className="mt-auto inline-flex items-center gap-2 text-[10px] font-bold text-gray-400 group-hover:text-orange-500 tracking-widest uppercase transition-colors">
+                    Kategori: {service.category} <ChevronRight size={12} />
+                  </div>
                 </div>
               </div>
             ))}
