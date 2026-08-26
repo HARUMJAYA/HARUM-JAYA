@@ -53,8 +53,14 @@ const ProjectCategory = ({ category, title }: ProjectCategoryProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {projects.map((project) => (
               <div key={project.id} className="group bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={project.image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                  {project.image_url ? (
+                    <img src={project.image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <ImageIcon size={40} className="opacity-20" />
+                    </div>
+                  )}
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="font-bold text-lg text-gray-800 line-clamp-2 uppercase italic mb-4">{project.title}</h3>
