@@ -18,7 +18,7 @@ const Hero = () => {
         <img 
           src="/logo_hd.png" 
           alt="CV IM Logo" 
-          className="w-48 sm:w-64 md:w-80 h-auto object-contain drop-shadow-2xl"
+          className="w-48 sm:w-64 md:w-80 h-auto object-contain drop-shadow-2xl mix-blend-multiply"
         />
       </div>
     </div>
