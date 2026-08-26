@@ -1,7 +1,7 @@
 import { MessageSquare } from "lucide-react";
 
 const WhatsAppFloat = () => {
-  const phoneNumber = "628518016088"; // Sesuaikan nomor
+  const phoneNumber = "6282272077675"; // Diperbarui
   const message = "Halo CV IM, saya ingin berkonsultasi mengenai proyek konstruksi.";
   
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

@@ -53,7 +53,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-700 text-sm uppercase mb-1">Telepon & WhatsApp</h4>
-                    <p className="text-gray-500 text-sm">(0651) 8016088<br />+62 851-8016-088</p>
+                    <p className="text-gray-500 text-sm">+62 822-7207-7675</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">

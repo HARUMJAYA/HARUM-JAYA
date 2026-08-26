@@ -86,7 +86,7 @@ const Index = () => {
               <p className="text-gray-500 text-sm leading-relaxed">
                 Banda Aceh, Indonesia<br />
                 pt.harumjaya@yahoo.co.id<br />
-                (0651) 8016088
+                +62 822-7207-7675
               </p>
             </div>
           </div>

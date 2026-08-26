@@ -179,7 +179,7 @@ const MainHeader = () => {
                     <Mail size={14} /> pt.harumjaya@yahoo.co.id
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-400">
-                    <Phone size={14} /> (0651) 8016088
+                    <Phone size={14} /> +62 822-7207-7675
                   </div>
                 </div>
              </div>
@@ -229,7 +229,7 @@ const MainHeader = () => {
               </div>
               <div className="text-xs text-left">
                 <p className="font-bold text-gray-700 uppercase tracking-wider">Call Us</p>
-                <p className="text-gray-500">(0651) 8016088</p>
+                <p className="text-gray-500">+62 822-7207-7675</p>
               </div>
             </div>
           </div>
