@@ -1,4 +1,4 @@
-import { Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, Search, ChevronDown } from "lucide-react";
+import { Home, Users, Briefcase, Cog, UserPlus, Monitor, Newspaper, Search, ChevronDown, Mail } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
@@ -90,6 +90,7 @@ const Navbar = () => {
         { label: "Galeri Foto", path: "/news/galeri" },
       ]
     },
+    { label: "KONTAK", icon: <Mail size={14} />, path: "/contact" },
   ];
 
   return (

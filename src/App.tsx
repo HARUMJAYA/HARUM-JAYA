@@ -18,6 +18,8 @@ import VisionMission from "./pages/VisionMission";
 import Strategy from "./pages/Strategy";
 import Organization from "./pages/Organization";
 import Awards from "./pages/Awards";
+import Contact from "./pages/Contact";
+import NewsDetail from "./pages/NewsDetail";
 
 // Category Pages
 import ProjectCategory from "./pages/ProjectCategory";
@@ -31,7 +33,6 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -59,6 +60,7 @@ const App = () => (
           <Route path="/services/magang" element={<ServiceCategory category="PROGRAM MAGANG" title="Program Magang" />} />
 
           <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           {/* News Categories */}
           <Route path="/news/berita" element={<NewsCategory category="Berita" title="Berita Utama" />} />
           <Route path="/news/csr" element={<NewsCategory category="CSR" title="CSR Perusahaan" />} />
@@ -86,6 +88,7 @@ const App = () => (
           <Route path="/strategy" element={<Strategy />} />
           <Route path="/organization" element={<Organization />} />
           <Route path="/awards" element={<Awards />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

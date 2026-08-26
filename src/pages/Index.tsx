@@ -5,7 +5,9 @@ import Hero from "@/components/Hero";
 import ServiceSection from "@/components/public/ServiceSection";
 import ProjectSection from "@/components/public/ProjectSection";
 import NewsSection from "@/components/public/NewsSection";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -42,16 +44,20 @@ const Index = () => {
             <div className="flex-1 bg-[#34495e] p-10 border-l-4 border-orange-500">
               <h3 className="text-2xl font-bold mb-4 italic">PROGRAM PELATIHAN</h3>
               <p className="text-gray-300 text-sm mb-6 leading-relaxed">Tingkatkan kompetensi Anda melalui program sertifikasi SKK, Bimtek, dan Akademik Tukang bersama mentor profesional kami.</p>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
-                Info Pelatihan
-              </button>
+              <Link to="/training">
+                <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
+                  Info Pelatihan
+                </button>
+              </Link>
             </div>
             <div className="flex-1 bg-[#34495e] p-10 border-l-4 border-blue-500">
               <h3 className="text-2xl font-bold mb-4 italic">KARIR & BUDAYA</h3>
               <p className="text-gray-300 text-sm mb-6 leading-relaxed">Bergabunglah dengan tim inovatif kami. Kami mencari talenta terbaik untuk membangun infrastruktur Indonesia yang lebih baik.</p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
-                Cari Lowongan
-              </button>
+              <Link to="/career">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-xs font-bold uppercase tracking-widest transition-colors">
+                  Cari Lowongan
+                </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -69,10 +75,10 @@ const Index = () => {
             <div>
               <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-800">Quick Links</h4>
               <ul className="text-gray-500 text-sm space-y-3">
-                <li><a href="#" className="hover:text-orange-500 transition-colors">Tentang Kami</a></li>
-                <li><a href="#" className="hover:text-orange-500 transition-colors">Proyek Pilihan</a></li>
-                <li><a href="#" className="hover:text-orange-500 transition-colors">Layanan Konstruksi</a></li>
-                <li><a href="#" className="hover:text-orange-500 transition-colors">Hubungi Kami</a></li>
+                <li><Link to="/company" className="hover:text-orange-500 transition-colors">Tentang Kami</Link></li>
+                <li><Link to="/projects" className="hover:text-orange-500 transition-colors">Proyek Pilihan</Link></li>
+                <li><Link to="/services" className="hover:text-orange-500 transition-colors">Layanan Konstruksi</Link></li>
+                <li><Link to="/contact" className="hover:text-orange-500 transition-colors">Hubungi Kami</Link></li>
               </ul>
             </div>
             <div>
@@ -89,6 +95,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      <WhatsAppFloat />
       <MadeWithDyad />
     </div>
   );
