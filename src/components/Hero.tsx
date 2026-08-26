@@ -13,12 +13,12 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
-      {/* Logo Overlay with Blending */}
+      {/* Logo Overlay - Menggunakan logo baru dengan transparansi */}
       <div className="relative z-10 animate-in fade-in zoom-in duration-1000 flex items-center justify-center">
         <img 
           src="/logo_hd.png" 
           alt="CV IM Logo" 
-          className="w-56 sm:w-72 md:w-96 h-auto object-contain mix-blend-multiply contrast-125"
+          className="w-64 sm:w-80 md:w-[450px] h-auto object-contain drop-shadow-2xl"
         />
       </div>
     </div>
