@@ -5,6 +5,7 @@ import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Cog, ChevronRight, Loader2 } from "lucide-react";
+import ContactFormSection from "@/components/public/ContactFormSection";
 
 const Services = () => {
   const [services, setServices] = useState<any[]>([]);
@@ -50,6 +51,9 @@ const Services = () => {
           </div>
         )}
       </main>
+
+      <ContactFormSection />
+      
       <MadeWithDyad />
     </div>
   );
