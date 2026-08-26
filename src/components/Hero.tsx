@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -27,10 +28,13 @@ const Hero = () => {
           </h3>
 
           <div className="flex justify-start">
-            <button className="bg-white text-[#4834d4] px-8 py-3 rounded-full flex items-center gap-3 font-bold text-sm sm:text-base italic tracking-wide hover:bg-gray-100 transition-all shadow-lg border border-transparent group">
+            <Link 
+              to="/training/skk"
+              className="bg-white text-[#4834d4] px-8 py-3 rounded-full flex items-center gap-3 font-bold text-sm sm:text-base italic tracking-wide hover:bg-gray-100 transition-all shadow-lg border border-transparent group"
+            >
               KLIK UNTUK DAFTAR 
               <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
