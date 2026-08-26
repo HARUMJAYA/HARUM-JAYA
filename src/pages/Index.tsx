@@ -85,7 +85,7 @@ const Index = () => {
               <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-800">Office</h4>
               <p className="text-gray-500 text-sm leading-relaxed">
                 Banda Aceh, Indonesia<br />
-                pt.harumjaya@yahoo.co.id<br />
+                cvingatmati@gmail.com<br />
                 +62 822-7207-7675
               </p>
             </div>

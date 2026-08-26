@@ -62,7 +62,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-700 text-sm uppercase mb-1">Email</h4>
-                    <p className="text-gray-500 text-sm">pt.harumjaya@yahoo.co.id</p>
+                    <p className="text-gray-500 text-sm">cvingatmati@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
