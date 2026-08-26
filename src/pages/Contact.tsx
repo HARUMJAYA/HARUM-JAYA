@@ -44,7 +44,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-700 text-sm uppercase mb-1">Alamat Utama</h4>
-                    <p className="text-gray-500 text-sm leading-relaxed">Banda Aceh, Indonesia<br />Kec. Lueng Bata, Kota Banda Aceh</p>
+                    <p className="text-gray-500 text-sm leading-relaxed">Jalan Kampus UNIDA Nomor 16, Gampong Lamteumen Timur,<br />Kecamatan Jaya Baru, Kota Banda Aceh, Aceh</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
