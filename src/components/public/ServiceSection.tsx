@@ -23,7 +23,7 @@ const ServiceSection = () => {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 italic">LAYANAN KAMI</h2>
-          <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
+          <div className="w-20 h-1 bg-[#4834d4] mx-auto"></div>
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
             Kami menyediakan berbagai solusi konstruksi dan arsitektur dengan standar kualitas tinggi untuk memenuhi kebutuhan proyek Anda.
           </p>

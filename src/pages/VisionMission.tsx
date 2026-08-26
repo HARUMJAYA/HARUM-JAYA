@@ -39,9 +39,9 @@ const VisionMission = () => {
           <div className="flex justify-center p-20"><Loader2 className="animate-spin text-orange-500" size={40} /></div>
         ) : (
           <div className="space-y-16">
-            <div className="relative pl-10 border-l-8 border-orange-500 py-4">
+            <div className="relative pl-10 border-l-8 border-[#4834d4] py-4">
               <div className="absolute -left-6 top-0 bg-white p-2">
-                <Target className="text-orange-500" size={32} />
+                <Target className="text-[#4834d4]" size={32} />
               </div>
               <h2 className="text-2xl font-bold uppercase tracking-widest text-gray-400 mb-6 italic">Visi Kami</h2>
               <p className="text-2xl text-gray-700 leading-relaxed italic font-light">

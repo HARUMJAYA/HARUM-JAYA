@@ -25,7 +25,7 @@ const Index = () => {
             <h2 className="text-3xl font-bold mb-8 text-gray-800 uppercase italic tracking-tight">
               Membangun Masa Depan Dengan Presisi
             </h2>
-            <div className="w-16 h-1 bg-orange-500 mx-auto mb-8"></div>
+            <div className="w-16 h-1 bg-[#4834d4] mx-auto mb-8"></div>
             <p className="text-gray-600 leading-loose text-lg font-light">
               CV IM adalah perusahaan konstruksi dan arsitektur terkemuka yang berdedikasi untuk memberikan kualitas terbaik dalam setiap proyek. Kami percaya bahwa setiap perencanaan dapat menjadi kenyataan melalui keahlian teknik yang tepat dan komitmen terhadap detail.
             </p>

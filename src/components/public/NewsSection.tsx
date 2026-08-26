@@ -24,7 +24,7 @@ const NewsSection = () => {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 italic uppercase">BERITA & INFORMASI</h2>
-          <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
+          <div className="w-20 h-1 bg-[#4834d4] mx-auto"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

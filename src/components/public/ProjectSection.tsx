@@ -24,7 +24,7 @@ const ProjectSection = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
           <div>
             <h2 className="text-3xl font-bold text-gray-800 italic uppercase">PROYEK TERBARU</h2>
-            <div className="w-20 h-1 bg-orange-500 mt-2"></div>
+            <div className="w-20 h-1 bg-[#4834d4] mt-2"></div>
           </div>
           <button className="text-sm font-bold text-orange-600 border-b-2 border-orange-600 pb-1 hover:text-orange-700 transition-colors uppercase tracking-widest">
             Lihat Semua Proyek

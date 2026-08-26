@@ -31,7 +31,7 @@ const Company = () => {
       <div className="bg-[#f8f9fa] py-20 border-b">
         <div className="container mx-auto max-w-4xl text-center px-4">
           <h1 className="text-5xl font-bold italic text-gray-800 tracking-tighter uppercase mb-6">Tentang Kami</h1>
-          <div className="w-20 h-1.5 bg-orange-500 mx-auto mb-8"></div>
+          <div className="w-20 h-1.5 bg-[#4834d4] mx-auto mb-8"></div>
           <p className="text-gray-500 text-lg font-light leading-relaxed">Membangun impian Anda menjadi kenyataan melalui keunggulan teknik dan dedikasi profesional.</p>
         </div>
       </div>
@@ -43,10 +43,10 @@ const Company = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center" id="vision">
               <div>
                 <h2 className="text-3xl font-bold italic uppercase flex items-center gap-4 mb-8 text-gray-800">
-                  <Target className="text-orange-500" size={32} /> Visi & Misi
+                  <Target className="text-[#4834d4]" size={32} /> Visi & Misi
                 </h2>
                 <div className="space-y-12">
-                  <div className="relative pl-8 border-l-4 border-orange-500">
+                  <div className="relative pl-8 border-l-4 border-[#4834d4]">
                     <h3 className="font-bold text-lg mb-3 uppercase tracking-widest text-gray-400">Visi Kami</h3>
                     <p className="text-gray-600 leading-relaxed italic">{data.vision || "Menjadi perusahaan konstruksi terdepan di Indonesia."}</p>
                   </div>
@@ -77,11 +77,11 @@ const Company = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16" id="values">
                <div className="space-y-6">
-                 <h2 className="text-3xl font-bold italic uppercase text-gray-800 border-b-2 border-orange-500 pb-2 w-fit">Nilai Perusahaan</h2>
+                 <h2 className="text-3xl font-bold italic uppercase text-gray-800 border-b-2 border-[#4834d4] pb-2 w-fit">Nilai Perusahaan</h2>
                  <p className="text-gray-600 leading-relaxed whitespace-pre-line">{data.values}</p>
                </div>
                <div className="space-y-6">
-                 <h2 className="text-3xl font-bold italic uppercase text-gray-800 border-b-2 border-orange-500 pb-2 w-fit">Strategi Kami</h2>
+                 <h2 className="text-3xl font-bold italic uppercase text-gray-800 border-b-2 border-[#4834d4] pb-2 w-fit">Strategi Kami</h2>
                  <p className="text-gray-600 leading-relaxed whitespace-pre-line">{data.strategy}</p>
                </div>
             </div>
