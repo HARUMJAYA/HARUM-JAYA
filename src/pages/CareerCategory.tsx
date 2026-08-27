@@ -34,15 +34,16 @@ const CareerCategory = ({ category, title }: CareerCategoryProps) => {
       <TopHeader />
       <MainHeader />
       <Navbar />
-      <div className="bg-[#4834d4] text-white py-16">
+      {/* Header diubah menjadi Hitam */}
+      <div className="bg-[#1a1a1a] text-white py-16">
         <div className="container mx-auto max-w-7xl px-4">
           <h1 className="text-4xl font-bold italic uppercase tracking-tighter">{title}</h1>
-          <p className="mt-2 text-gray-200">Kategori: {category}</p>
+          <p className="mt-2 text-gray-400">Kategori: {category}</p>
         </div>
       </div>
       <main className="container mx-auto max-w-7xl px-4 py-20">
         {loading ? (
-          <div className="flex justify-center p-20"><Loader2 className="animate-spin text-[#4834d4]" size={40} /></div>
+          <div className="flex justify-center p-20"><Loader2 className="animate-spin text-black" size={40} /></div>
         ) : items.length === 0 ? (
           <div className="text-center py-20 bg-gray-50 rounded-xl">
             <Briefcase size={48} className="mx-auto text-gray-300 mb-4" />
@@ -60,7 +61,7 @@ const CareerCategory = ({ category, title }: CareerCategoryProps) => {
                 <div className="p-8 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold text-gray-800 italic uppercase mb-4">{item.title}</h3>
                   <p className="text-gray-500 text-sm mb-6 leading-relaxed flex-1">{item.description}</p>
-                  <button className="bg-[#4834d4] hover:bg-[#341f97] text-white py-3 px-6 text-xs font-bold uppercase tracking-widest transition-colors rounded">
+                  <button className="bg-black hover:bg-gray-800 text-white py-3 px-6 text-xs font-bold uppercase tracking-widest transition-colors rounded">
                     Lamar Sekarang
                   </button>
                 </div>
