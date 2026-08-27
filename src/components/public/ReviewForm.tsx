@@ -91,21 +91,21 @@ const ReviewForm = ({ isOpen, onClose, onSuccess }: ReviewFormProps) => {
       <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden rounded-2xl border-none shadow-2xl">
         <DialogHeader className="p-6 pb-2">
           <div className="flex items-center justify-center mb-2">
-            <p className="text-sm font-medium text-gray-700">PT. Harum Jaya, Banda Aceh</p>
+            <p className="text-sm font-bold text-gray-700 uppercase tracking-tight">CV IM Construction & Architecture (cvingatmati)</p>
           </div>
           <div className="flex items-start gap-4">
             <Avatar className="w-12 h-12">
               <AvatarImage src="" />
-              <AvatarFallback className="bg-blue-100 text-blue-600 font-bold">U</AvatarFallback>
+              <AvatarFallback className="bg-blue-100 text-blue-600 font-bold uppercase">U</AvatarFallback>
             </Avatar>
-            <div className="text-left">
+            <div className="text-left w-full">
               <input 
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Nama Anda"
-                className="font-bold text-gray-900 border-none p-0 focus:ring-0 w-full text-lg"
+                placeholder="Tulis Nama Anda..."
+                className="font-bold text-gray-900 border-none p-0 focus:ring-0 w-full text-lg outline-none placeholder:text-gray-300"
               />
-              <p className="text-xs text-gray-500">Memposting untuk publik di Google (Simulasi)</p>
+              <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Memposting untuk publik di Google (Simulasi)</p>
             </div>
           </div>
         </DialogHeader>
@@ -132,51 +132,51 @@ const ReviewForm = ({ isOpen, onClose, onSuccess }: ReviewFormProps) => {
             ))}
           </div>
           
-          <p className="text-sm font-medium text-gray-500">
-            {rating === 5 ? "Sangat Bagus" : rating === 4 ? "Bagus" : rating === 3 ? "Cukup" : rating === 2 ? "Kurang" : rating === 1 ? "Buruk" : "Beri Nilai"}
+          <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+            {rating === 5 ? "Sangat Bagus" : rating === 4 ? "Bagus" : rating === 3 ? "Cukup" : rating === 2 ? "Kurang" : rating === 1 ? "Buruk" : "Berikan Nilai Anda"}
           </p>
 
-          <div className="w-full border rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+          <div className="w-full border-2 border-gray-100 rounded-2xl overflow-hidden focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-50 transition-all">
             <Textarea
-              placeholder="Bagikan detail pengalaman Anda sendiri di tempat ini"
+              placeholder="Bagikan pengalaman Anda menggunakan jasa konstruksi kami..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="border-none min-h-[120px] text-base p-4 resize-none focus-visible:ring-0"
+              className="border-none min-h-[140px] text-base p-5 resize-none focus-visible:ring-0 bg-gray-50/30"
             />
           </div>
 
           <div className="w-full">
             {preview ? (
               <div className="relative inline-block group">
-                <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded-xl border" />
+                <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded-2xl border-4 border-white shadow-md" />
                 <button 
                   onClick={() => { setPreview(null); setImageFile(null); }}
-                  className="absolute -top-2 -right-2 bg-white border shadow-md rounded-full p-1 hover:bg-red-50 text-red-500"
+                  className="absolute -top-2 -right-2 bg-white border shadow-md rounded-full p-1.5 hover:bg-red-50 text-red-500 transition-colors"
                 >
                   <X size={14} />
                 </button>
               </div>
             ) : (
-              <label className="flex items-center justify-center gap-3 w-full py-3 bg-blue-50 text-blue-600 rounded-full font-bold text-sm cursor-pointer hover:bg-blue-100 transition-colors border border-blue-100">
-                <Camera size={18} />
-                Tambahkan foto & video
+              <label className="flex items-center justify-center gap-3 w-full py-4 bg-blue-50 text-blue-600 rounded-2xl font-bold text-sm cursor-pointer hover:bg-blue-100 transition-colors border-2 border-blue-100 border-dashed">
+                <Camera size={20} />
+                TAMBAHKAN FOTO PROYEK
                 <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
               </label>
             )}
           </div>
         </div>
 
-        <DialogFooter className="p-4 bg-gray-50 flex gap-2 justify-end">
-          <Button variant="ghost" onClick={onClose} className="rounded-lg font-bold text-blue-600 hover:bg-blue-50">
+        <DialogFooter className="p-6 bg-gray-50 flex gap-3 justify-end border-t">
+          <Button variant="ghost" onClick={onClose} className="rounded-xl font-bold text-gray-400 hover:text-gray-600 hover:bg-gray-100 uppercase tracking-widest text-xs px-6">
             Batal
           </Button>
           <Button 
             onClick={handleSubmit} 
             disabled={isSubmitting}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg px-8"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl px-10 py-6 shadow-lg shadow-blue-200 uppercase tracking-widest text-xs"
           >
             {isSubmitting ? <Loader2 className="animate-spin mr-2" size={16} /> : null}
-            Posting
+            POSTING ULASAN
           </Button>
         </DialogFooter>
       </DialogContent>
