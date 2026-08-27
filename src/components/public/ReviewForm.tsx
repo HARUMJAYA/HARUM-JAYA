@@ -91,7 +91,7 @@ const ReviewForm = ({ isOpen, onClose, onSuccess }: ReviewFormProps) => {
       <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden rounded-2xl border-none shadow-2xl">
         <DialogHeader className="p-6 pb-2">
           <div className="flex items-center justify-center mb-2">
-            <p className="text-sm font-bold text-gray-700 uppercase tracking-tight">CV IM Construction & Architecture (cvingatmati)</p>
+            <p className="text-sm font-bold text-gray-700 uppercase tracking-tight">cv ingatmati</p>
           </div>
           <div className="flex items-start gap-4">
             <Avatar className="w-12 h-12">
