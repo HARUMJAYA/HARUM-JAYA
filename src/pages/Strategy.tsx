@@ -4,14 +4,16 @@ import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
 import { MadeWithDyad } from "@/components/made-with-dyad";
-import { ShieldCheck, TrendingUp, Loader2, Star, MessageSquareQuote } from "lucide-react";
+import { ShieldCheck, TrendingUp, Loader2, Star, Sparkles } from "lucide-react";
 import ReviewForm from "@/components/public/ReviewForm";
 import ReviewList from "@/components/public/ReviewList";
+import { Button } from "@/components/ui/button";
 
 const Strategy = () => {
   const [data, setData] = useState<any>({});
   const [loading, setLoading] = useState(true);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchInfo = async () => {
@@ -35,6 +37,7 @@ const Strategy = () => {
       <TopHeader />
       <MainHeader />
       <Navbar />
+      
       <div className="bg-[#f8f9fa] py-16 border-b">
         <div className="container mx-auto max-w-7xl px-4">
           <h1 className="text-3xl font-bold italic uppercase tracking-tight">Nilai & Strategi</h1>
@@ -46,7 +49,7 @@ const Strategy = () => {
         {loading ? (
           <div className="flex justify-center p-20"><Loader2 className="animate-spin text-orange-500" size={40} /></div>
         ) : (
-          <div className="space-y-24">
+          <div className="space-y-32">
             {/* Visi Misi Summary Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
               <div className="space-y-8">
@@ -72,25 +75,69 @@ const Strategy = () => {
               </div>
             </div>
 
-            {/* Native Review Section */}
-            <div className="space-y-12">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="bg-blue-50 p-3 rounded-full text-[#4834d4]">
-                  <MessageSquareQuote size={32} />
+            {/* GOOGLE REVIEWS SECTION */}
+            <div className="space-y-10">
+              <div className="bg-[#f8f9fa] p-8 md:p-10 rounded-3xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-500 font-bold text-3xl">G</span>
+                    <span className="text-red-500 font-bold text-3xl">o</span>
+                    <span className="text-yellow-500 font-bold text-3xl">o</span>
+                    <span className="text-blue-500 font-bold text-3xl">g</span>
+                    <span className="text-green-500 font-bold text-3xl">l</span>
+                    <span className="text-red-500 font-bold text-3xl">e</span>
+                    <span className="text-gray-700 font-bold text-3xl ml-2">Reviews</span>
+                  </div>
+                  <div className="flex flex-col items-center md:items-start">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-2xl font-bold text-gray-800">4.9</span>
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} size={20} className="text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                      <span className="text-gray-400 text-sm">(308)</span>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-3xl font-bold italic uppercase text-gray-800">Ulasan & Kepuasan Pelanggan</h2>
-                <div className="w-20 h-1 bg-orange-500"></div>
-                <p className="text-gray-500 max-w-2xl">Pendapat Anda adalah kunci kesuksesan kami. Berikan penilaian langsung di sini untuk membantu kami menjadi lebih baik.</p>
+                <Button 
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-6 rounded-xl text-base shadow-lg shadow-blue-200"
+                >
+                  Review us on Google
+                </Button>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-                <div className="lg:col-span-1 sticky top-24">
-                  <ReviewForm onSuccess={handleReviewSuccess} />
-                </div>
-                <div className="lg:col-span-2">
-                  <ReviewList refreshKey={refreshKey} />
-                </div>
+              {/* Verified Summary Placeholder */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                 <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-3">
+                       <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                          <Sparkles size={20} />
+                       </div>
+                       <div>
+                          <h4 className="font-bold text-[13px] text-blue-600">AI-Generated Sum...</h4>
+                          <p className="text-[10px] text-gray-400">Based on 308 Google reviews</p>
+                       </div>
+                    </div>
+                    <div className="flex gap-0.5 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={12} className="text-yellow-400 fill-yellow-400" />
+                      ))}
+                    </div>
+                    <p className="text-[13px] font-bold text-gray-800 flex items-center gap-2">
+                       ✓ Trusted and high-quality construction company
+                    </p>
+                 </div>
               </div>
+
+              <ReviewList refreshKey={refreshKey} />
+              
+              <ReviewForm 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onSuccess={handleReviewSuccess} 
+              />
             </div>
           </div>
         )}
