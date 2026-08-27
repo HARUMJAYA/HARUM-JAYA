@@ -56,9 +56,10 @@ const Company = () => {
                   </div>
                 </div>
               </div>
+              {/* Bagian penghargaan diubah menjadi Hitam */}
               <div className="bg-gray-50 p-12 rounded-2xl" id="awards">
                 <h2 className="text-3xl font-bold italic uppercase flex items-center gap-4 mb-8 text-gray-800">
-                  <Award className="text-orange-500" size={32} /> Penghargaan
+                  <Award className="text-black" size={32} /> Penghargaan
                 </h2>
                 <p className="text-gray-600 leading-loose whitespace-pre-line">{data.awards || "Belum ada data penghargaan terdaftar."}</p>
               </div>
@@ -67,7 +68,7 @@ const Company = () => {
             {data.structure_url && (
               <div className="text-center bg-gray-50 p-16 rounded-3xl" id="structure">
                 <h2 className="text-3xl font-bold italic uppercase flex items-center justify-center gap-4 mb-12 text-gray-800">
-                  <LayoutTemplate className="text-orange-500" size={32} /> Struktur Organisasi
+                  <LayoutTemplate className="text-black" size={32} /> Struktur Organisasi
                 </h2>
                 <div className="max-w-4xl mx-auto bg-white p-4 shadow-2xl rounded-xl">
                   <img src={data.structure_url} alt="Struktur Organisasi" className="w-full h-auto" />
