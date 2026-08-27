@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Building2, Award, Target, LayoutTemplate, Loader2 } from "lucide-react";
 
 const Company = () => {
@@ -89,7 +88,6 @@ const Company = () => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

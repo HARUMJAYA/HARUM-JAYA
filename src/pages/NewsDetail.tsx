@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Calendar, User, ArrowLeft, Loader2, Share2 } from "lucide-react";
 
 const NewsDetail = () => {
@@ -102,8 +101,6 @@ const NewsDetail = () => {
           </footer>
         </article>
       </main>
-
-      <MadeWithDyad />
     </div>
   );
 };

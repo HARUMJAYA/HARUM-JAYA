@@ -6,7 +6,6 @@ import ServiceSection from "@/components/public/ServiceSection";
 import ProjectSection from "@/components/public/ProjectSection";
 import NewsSection from "@/components/public/NewsSection";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -87,7 +86,6 @@ const Index = () => {
         </div>
       </footer>
       <WhatsAppFloat />
-      <MadeWithDyad />
     </div>
   );
 };

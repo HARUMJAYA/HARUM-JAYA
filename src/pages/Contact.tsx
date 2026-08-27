@@ -1,7 +1,6 @@
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { showSuccess } from "@/utils/toast";
@@ -139,8 +138,6 @@ const Contact = () => {
           </div>
         </div>
       </main>
-
-      <MadeWithDyad />
     </div>
   );
 };

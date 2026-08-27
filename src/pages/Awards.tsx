@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Award, Loader2, ScrollText } from "lucide-react";
 
 const Awards = () => {
@@ -48,7 +47,6 @@ const Awards = () => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Target, Loader2 } from "lucide-react";
 
 const VisionMission = () => {
@@ -58,7 +57,6 @@ const VisionMission = () => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Calendar, User, Loader2, Newspaper } from "lucide-react";
 
 interface NewsCategoryProps {
@@ -74,7 +73,6 @@ const NewsCategory = ({ category, title }: NewsCategoryProps) => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

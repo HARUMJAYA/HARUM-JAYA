@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { ShieldCheck, TrendingUp, Loader2, Star, Sparkles } from "lucide-react";
 import ReviewForm from "@/components/public/ReviewForm";
 import ReviewList from "@/components/public/ReviewList";
@@ -142,7 +141,6 @@ const Strategy = () => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

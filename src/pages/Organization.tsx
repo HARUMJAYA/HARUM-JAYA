@@ -3,8 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
-import { LayoutTemplate, Loader2, ImageIcon } from "lucide-react";
+import { Loader2, ImageIcon } from "lucide-react";
 
 const Organization = () => {
   const [url, setUrl] = useState<string | null>(null);
@@ -48,7 +47,6 @@ const Organization = () => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

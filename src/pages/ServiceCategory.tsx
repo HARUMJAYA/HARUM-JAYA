@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2, Cog, ImageIcon, ChevronRight } from "lucide-react";
 
 interface ServiceCategoryProps {
@@ -76,7 +75,6 @@ const ServiceCategory = ({ category, title }: ServiceCategoryProps) => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };

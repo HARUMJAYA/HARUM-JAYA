@@ -3,8 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
-import { MadeWithDyad } from "@/components/made-with-dyad";
-import { Loader2, UserPlus, Briefcase } from "lucide-react";
+import { Loader2, Briefcase } from "lucide-react";
 
 interface CareerCategoryProps {
   category: string;
@@ -70,7 +69,6 @@ const CareerCategory = ({ category, title }: CareerCategoryProps) => {
           </div>
         )}
       </main>
-      <MadeWithDyad />
     </div>
   );
 };
