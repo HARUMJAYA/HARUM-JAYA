@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Loader2 } from "lucide-react";
 
 const Projects = () => {
@@ -38,23 +40,24 @@ const Projects = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {projects.map((project) => (
-              <div key={project.id} className="group bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
+              <Link to={`/projects/${project.id}`} key={project.id} className="group bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={project.image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute top-4 left-4 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">{project.category}</div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-bold text-lg text-gray-800 line-clamp-2 uppercase italic mb-4">{project.title}</h3>
+                  <h3 className="font-bold text-lg text-gray-800 line-clamp-2 uppercase italic mb-4 group-hover:text-orange-500 transition-colors">{project.title}</h3>
                   <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-[10px] font-bold text-gray-400">
                     <span>SELESAI PADA</span>
                     <span className="text-gray-600">{new Date(project.created_at).getFullYear()}</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

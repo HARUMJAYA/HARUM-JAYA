@@ -18,6 +18,8 @@ import Organization from "./pages/Organization";
 import Awards from "./pages/Awards";
 import Contact from "./pages/Contact";
 import NewsDetail from "./pages/NewsDetail";
+import ProjectDetail from "./pages/ProjectDetail";
+import ServiceDetail from "./pages/ServiceDetail";
 
 // Category Pages
 import ProjectCategory from "./pages/ProjectCategory";
@@ -38,6 +40,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
           
           {/* Project Categories */}
           <Route path="/projects/eksterior" element={<ProjectCategory category="eksterior" title="Proyek Eksterior" />} />
@@ -48,6 +51,7 @@ const App = () => (
           <Route path="/projects/umum" element={<ProjectCategory category="pekerjaan umum" title="Pekerjaan Umum" />} />
 
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:id" element={<ServiceDetail />} />
           {/* Service Categories */}
           <Route path="/services/umum" element={<ServiceCategory category="KONTRAKTOR UMUM" title="Kontraktor Umum" />} />
           <Route path="/services/rancang-bangun" element={<ServiceCategory category="RANCANG & BANGUN" title="Rancang & Bangun" />} />

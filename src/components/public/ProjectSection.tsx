@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 
 const ProjectSection = () => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -26,14 +27,14 @@ const ProjectSection = () => {
             <h2 className="text-3xl font-bold text-gray-800 italic uppercase">PROYEK TERBARU</h2>
             <div className="w-20 h-1 bg-[#4834d4] mt-2"></div>
           </div>
-          <button className="text-sm font-bold text-orange-600 border-b-2 border-orange-600 pb-1 hover:text-orange-700 transition-colors uppercase tracking-widest">
+          <Link to="/projects" className="text-sm font-bold text-orange-600 border-b-2 border-orange-600 pb-1 hover:text-orange-700 transition-colors uppercase tracking-widest">
             Lihat Semua Proyek
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="group relative overflow-hidden bg-white shadow-md aspect-[3/4]">
+            <Link to={`/projects/${project.id}`} key={project.id} className="group relative overflow-hidden bg-white shadow-md aspect-[3/4]">
               <img 
                 src={project.image_url} 
                 alt={project.title} 
@@ -48,7 +49,7 @@ const ProjectSection = () => {
                   {project.title}
                 </h3>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

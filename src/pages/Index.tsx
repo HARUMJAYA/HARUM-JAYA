@@ -6,6 +6,7 @@ import ServiceSection from "@/components/public/ServiceSection";
 import ProjectSection from "@/components/public/ProjectSection";
 import NewsSection from "@/components/public/NewsSection";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -53,38 +54,7 @@ const Index = () => {
         </section>
       </main>
 
-      <footer className="bg-gray-50 border-t py-12">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <h4 className="text-xl font-bold italic mb-6">CV IM</h4>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                We engineer your plan to a reality. Perusahaan jasa konstruksi, arsitektur.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-800">Quick Links</h4>
-              <ul className="text-gray-500 text-sm space-y-3">
-                <li><Link to="/company" className="hover:text-orange-500 transition-colors">Tentang Kami</Link></li>
-                <li><Link to="/projects" className="hover:text-orange-500 transition-colors">Proyek Pilihan</Link></li>
-                <li><Link to="/services" className="hover:text-orange-500 transition-colors">Layanan Konstruksi</Link></li>
-                <li><Link to="/contact" className="hover:text-orange-500 transition-colors">Hubungi Kami</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-800">Office</h4>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Banda Aceh, Indonesia<br />
-                cvingatmati@gmail.com<br />
-                +62 822-7207-7675
-              </p>
-            </div>
-          </div>
-          <div className="border-t pt-8 text-center text-gray-400 text-[10px] uppercase font-bold tracking-[0.2em]">
-            <p>© 2024 CV IM Construction & Architecture. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       <WhatsAppFloat />
     </div>
   );
