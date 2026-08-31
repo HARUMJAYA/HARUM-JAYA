@@ -76,33 +76,40 @@ const ProjectManager = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !category || !imageFile) {
-      showError("Harap isi semua kolom dan pilih gambar");
+    // Validasi: Gambar sekarang bersifat opsional
+    if (!title || !category) {
+      showError("Harap isi Judul dan Kategori Proyek");
       return;
     }
 
     setIsSubmitting(true);
     try {
-      // 1. Upload Gambar ke Storage
-      const fileExt = imageFile.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `${fileName}`;
+      let publicUrl = null;
 
-      const { error: uploadError } = await supabase.storage
-        .from('projects')
-        .upload(filePath, imageFile, {
-          cacheControl: '3600',
-          upsert: false
-        });
+      // 1. Upload Gambar ke Storage (Hanya jika ada file terpilih)
+      if (imageFile) {
+        const fileExt = imageFile.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `${fileName}`;
 
-      if (uploadError) throw uploadError;
+        const { error: uploadError } = await supabase.storage
+          .from('projects')
+          .upload(filePath, imageFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
 
-      // 2. Ambil URL Publik Gambar
-      const { data: { publicUrl } } = supabase.storage
-        .from('projects')
-        .getPublicUrl(filePath);
+        if (uploadError) throw uploadError;
 
-      // 3. Simpan data ke tabel projects
+        // Ambil URL Publik Gambar
+        const { data: { publicUrl: url } } = supabase.storage
+          .from('projects')
+          .getPublicUrl(filePath);
+        
+        publicUrl = url;
+      }
+
+      // 2. Simpan data ke tabel projects
       const { error: insertError } = await supabase.from("projects").insert([
         { 
           title, 
@@ -113,7 +120,7 @@ const ProjectManager = () => {
 
       if (insertError) throw insertError;
 
-      showSuccess("Proyek berhasil disimpan");
+      showSuccess("Proyek berhasil disimpan" + (imageFile ? "" : " (Tanpa Gambar)"));
       clearForm();
       fetchProjects();
     } catch (error: any) {
@@ -132,8 +139,8 @@ const ProjectManager = () => {
       const { error: deleteError } = await supabase.from("projects").delete().eq("id", id);
       if (deleteError) throw deleteError;
 
-      // Coba hapus file dari storage jika URL-nya dari storage kita
-      if (imageUrl && imageUrl.includes('storage.co/storage/v1/object/public/projects/')) {
+      // Coba hapus file dari storage jika URL-nya ada
+      if (imageUrl && imageUrl.includes('/storage/v1/object/public/projects/')) {
         const fileName = imageUrl.split('/').pop();
         if (fileName) {
           await supabase.storage.from('projects').remove([fileName]);
@@ -185,7 +192,7 @@ const ProjectManager = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-600">Visual Proyek (Gambar)</label>
+              <label className="text-sm font-semibold text-gray-600">Visual Proyek (Gambar - Opsional)</label>
               <div 
                 className={`relative border-2 border-dashed rounded-xl transition-all duration-200 min-h-[180px] flex flex-col items-center justify-center p-4 ${
                   previewUrl ? 'border-[#4834d4]/30 bg-[#4834d4]/5' : 'border-gray-200 hover:border-[#4834d4]/50 hover:bg-gray-50/80 bg-gray-50/30'
@@ -217,8 +224,8 @@ const ProjectManager = () => {
                     <div className="bg-white p-3 rounded-full shadow-sm mb-3 text-[#4834d4]">
                       <Upload size={28} />
                     </div>
-                    <p className="text-sm font-bold text-gray-700 mb-1">Pilih atau Seret Gambar</p>
-                    <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">PNG, JPG up to 5MB</p>
+                    <p className="text-sm font-bold text-gray-700 mb-1">Pilih Gambar (Opsional)</p>
+                    <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium text-center">Biarkan kosong jika tidak ada foto</p>
                   </label>
                 )}
               </div>
