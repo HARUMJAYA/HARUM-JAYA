@@ -63,10 +63,6 @@ const ProjectCategory = ({ category, title }: ProjectCategoryProps) => {
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="font-bold text-lg text-gray-800 line-clamp-2 uppercase italic mb-4">{project.title}</h3>
-                  <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-[10px] font-bold text-gray-400">
-                    <span>SELESAI PADA</span>
-                    <span className="text-gray-600">{new Date(project.created_at).getFullYear()}</span>
-                  </div>
                 </div>
               </div>
             ))}

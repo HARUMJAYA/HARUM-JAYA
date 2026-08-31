@@ -5,7 +5,7 @@ import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Loader2, Calendar, Tag, MapPin, Share2 } from "lucide-react";
+import { ArrowLeft, Loader2, Tag, MapPin, Share2 } from "lucide-react";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -80,7 +80,7 @@ const ProjectDetail = () => {
               <div className="w-24 h-1.5 bg-[#4834d4]"></div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-12 border-y border-gray-100 py-8">
+            <div className="mb-12 border-y border-gray-100 py-8">
               <div className="flex items-center gap-3">
                 <div className="bg-orange-100 p-2.5 rounded-full text-orange-600">
                   <Tag size={18} />
@@ -88,15 +88,6 @@ const ProjectDetail = () => {
                 <div>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Kategori</p>
                   <p className="font-bold text-gray-700 text-sm">{project.category}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-100 p-2.5 rounded-full text-blue-600">
-                  <Calendar size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Tahun Selesai</p>
-                  <p className="font-bold text-gray-700 text-sm">{new Date(project.created_at).getFullYear()}</p>
                 </div>
               </div>
             </div>

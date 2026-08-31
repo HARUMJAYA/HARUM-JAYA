@@ -112,11 +112,7 @@ const Projects = () => {
                   <div className="absolute top-4 left-4 bg-orange-500 text-white text-[9px] font-bold px-2.5 py-1 uppercase tracking-widest rounded-sm shadow-lg">{project.category}</div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-bold text-gray-800 line-clamp-2 uppercase italic mb-4 group-hover:text-[#4834d4] transition-colors leading-tight">{project.title}</h3>
-                  <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-[10px] font-bold text-gray-400">
-                    <span className="uppercase tracking-tighter">Status: Selesai</span>
-                    <span className="text-gray-600 px-2 py-0.5 bg-gray-100 rounded">{new Date(project.created_at).getFullYear()}</span>
-                  </div>
+                  <h3 className="font-bold text-gray-800 line-clamp-2 uppercase italic group-hover:text-[#4834d4] transition-colors leading-tight">{project.title}</h3>
                 </div>
               </Link>
             ))}
