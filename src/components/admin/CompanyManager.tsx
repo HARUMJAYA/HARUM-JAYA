@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Save, Upload, ImageIcon, X, Building2 } from "lucide-react";
+import { Loader2, Save, Upload, ImageIcon, X, Building2, BarChart3 } from "lucide-react";
 import { showSuccess, showError } from "@/utils/toast";
 
 const CompanyManager = () => {
@@ -19,7 +20,11 @@ const CompanyManager = () => {
     values: "",
     strategy: "",
     structure_url: "",
-    awards: ""
+    awards: "",
+    stats_projects: "150+",
+    stats_experience: "10+",
+    stats_experts: "50+",
+    stats_clients: "200+"
   });
 
   const [structureFile, setStructureFile] = useState<File | null>(null);
@@ -113,6 +118,7 @@ const CompanyManager = () => {
       <Tabs defaultValue="about" className="w-full">
         <TabsList className="bg-white border mb-4 p-1 h-auto flex flex-wrap gap-1">
           <TabsTrigger value="about" className="px-4 py-2">Tentang Perusahaan</TabsTrigger>
+          <TabsTrigger value="stats" className="px-4 py-2">Statistik Beranda</TabsTrigger>
           <TabsTrigger value="vision-mission" className="px-4 py-2">Visi & Misi</TabsTrigger>
           <TabsTrigger value="values-strategy" className="px-4 py-2">Nilai & Strategi</TabsTrigger>
           <TabsTrigger value="structure" className="px-4 py-2">Struktur Organisasi</TabsTrigger>
@@ -138,6 +144,68 @@ const CompanyManager = () => {
                 {saving ? <Loader2 className="animate-spin mr-2" size={18} /> : <Save size={18} className="mr-2" />}
                 Simpan Deskripsi
               </Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="stats">
+          <Card className="border-none shadow-sm">
+            <CardHeader className="bg-gray-50/50 border-b">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <BarChart3 size={18} className="text-[#4834d4]" /> Statistik Beranda
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold">Proyek Selesai</label>
+                  <div className="flex gap-2">
+                    <Input 
+                      value={data.stats_projects}
+                      onChange={(e) => handleInputChange("stats_projects", e.target.value)}
+                    />
+                    <Button onClick={() => saveInfo("stats_projects")} disabled={saving} size="sm" className="bg-[#4834d4]">
+                      Simpan
+                    </Button>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold">Tahun Pengalaman</label>
+                  <div className="flex gap-2">
+                    <Input 
+                      value={data.stats_experience}
+                      onChange={(e) => handleInputChange("stats_experience", e.target.value)}
+                    />
+                    <Button onClick={() => saveInfo("stats_experience")} disabled={saving} size="sm" className="bg-[#4834d4]">
+                      Simpan
+                    </Button>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold">Tenaga Ahli</label>
+                  <div className="flex gap-2">
+                    <Input 
+                      value={data.stats_experts}
+                      onChange={(e) => handleInputChange("stats_experts", e.target.value)}
+                    />
+                    <Button onClick={() => saveInfo("stats_experts")} disabled={saving} size="sm" className="bg-[#4834d4]">
+                      Simpan
+                    </Button>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold">Klien Puas</label>
+                  <div className="flex gap-2">
+                    <Input 
+                      value={data.stats_clients}
+                      onChange={(e) => handleInputChange("stats_clients", e.target.value)}
+                    />
+                    <Button onClick={() => saveInfo("stats_clients")} disabled={saving} size="sm" className="bg-[#4834d4]">
+                      Simpan
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
