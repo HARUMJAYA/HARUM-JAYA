@@ -14,20 +14,39 @@ import { Award, CheckCircle, Users, HardHat, Loader2 } from "lucide-react";
 
 const Index = () => {
   const [aboutText, setAboutText] = useState("");
+  const [stats, setStats] = useState({
+    projects: "150+",
+    experience: "10+",
+    experts: "50+",
+    clients: "200+"
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAboutText = async () => {
+    const fetchCompanyData = async () => {
       const { data } = await supabase
         .from("company_info")
-        .select("value")
-        .eq("key", "about_company")
-        .single();
+        .select("key, value");
       
-      if (data) setAboutText(data.value);
+      if (data) {
+        const infoMap = data.reduce((acc: any, item) => {
+          acc[item.key] = item.value;
+          return acc;
+        }, {});
+
+        if (infoMap.about_company) setAboutText(infoMap.about_company);
+        
+        // Mengambil data statistik dari database atau menggunakan default jika tidak ada
+        setStats({
+          projects: infoMap.stats_projects || "150+",
+          experience: infoMap.stats_experience || "10+",
+          experts: infoMap.stats_experts || "50+",
+          clients: infoMap.stats_clients || "200+"
+        });
+      }
       setLoading(false);
     };
-    fetchAboutText();
+    fetchCompanyData();
   }, []);
 
   return (
@@ -75,28 +94,36 @@ const Index = () => {
                 <div className="flex justify-center text-[#4834d4] mb-2">
                   <CheckCircle size={32} />
                 </div>
-                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">150+</p>
+                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">
+                  {loading ? "..." : stats.projects}
+                </p>
                 <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proyek Selesai</p>
               </div>
               <div className="space-y-2">
                 <div className="flex justify-center text-[#4834d4] mb-2">
                   <Award size={32} />
                 </div>
-                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">10+</p>
+                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">
+                  {loading ? "..." : stats.experience}
+                </p>
                 <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Tahun Pengalaman</p>
               </div>
               <div className="space-y-2">
                 <div className="flex justify-center text-[#4834d4] mb-2">
                   <HardHat size={32} />
                 </div>
-                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">50+</p>
+                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">
+                  {loading ? "..." : stats.experts}
+                </p>
                 <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Tenaga Ahli</p>
               </div>
               <div className="space-y-2">
                 <div className="flex justify-center text-[#4834d4] mb-2">
                   <Users size={32} />
                 </div>
-                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">200+</p>
+                <p className="text-4xl md:text-5xl font-black text-[#4834d4]">
+                  {loading ? "..." : stats.clients}
+                </p>
                 <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Klien Puas</p>
               </div>
             </div>
