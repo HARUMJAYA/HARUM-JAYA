@@ -39,11 +39,13 @@ const CareerManager = () => {
     try {
       const { data, error } = await supabase
         .from("careers")
-.order("created_at", { ascending: false });
+        .select("*")
+        .order("created_at", { ascending: false });
       
       if (error) throw error;
       setItems(data || []);
     } catch (err: any) {
+      console.error("Fetch error:", err);
       showError("Gagal mengambil data karir: " + err.message);
     } finally {
       setLoading(false);
@@ -101,7 +103,12 @@ const CareerManager = () => {
 
       // Simpan Data
       const { error: insertError } = await supabase.from("careers").insert([
-        { title, category, description, image_url: publicUrl }
+        { 
+          title, 
+          category, 
+          description: description || null, 
+          image_url: publicUrl 
+        }
       ]);
 
       if (insertError) throw insertError;
@@ -110,7 +117,8 @@ const CareerManager = () => {
       clearForm();
       fetchCareers();
     } catch (error: any) {
-      showError("Gagal menyimpan data karir: " + error.message);
+      console.error("Insert error:", error);
+      showError("Gagal menyimpan data karir: " + (error.message || "Terjadi kesalahan"));
     } finally {
       setIsSubmitting(false);
     }
