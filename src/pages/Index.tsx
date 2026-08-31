@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import TopHeader from "@/components/TopHeader";
 import MainHeader from "@/components/MainHeader";
 import Navbar from "@/components/Navbar";
@@ -8,9 +10,26 @@ import NewsSection from "@/components/public/NewsSection";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { Award, CheckCircle, Users, HardHat } from "lucide-react";
+import { Award, CheckCircle, Users, HardHat, Loader2 } from "lucide-react";
 
 const Index = () => {
+  const [aboutText, setAboutText] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAboutText = async () => {
+      const { data } = await supabase
+        .from("company_info")
+        .select("value")
+        .eq("key", "about_company")
+        .single();
+      
+      if (data) setAboutText(data.value);
+      setLoading(false);
+    };
+    fetchAboutText();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white font-sans">
       <TopHeader />
@@ -19,19 +38,32 @@ const Index = () => {
       <main>
         <Hero />
         
-        {/* About Summary */}
-        <section className="py-20 px-4 bg-white relative overflow-hidden">
+        {/* About Summary Section */}
+        <section className="py-24 px-4 bg-white relative overflow-hidden">
           <div className="absolute -left-20 top-10 text-[120px] font-bold text-gray-50 opacity-[0.03] select-none pointer-events-none italic uppercase">
             History
           </div>
-          <div className="container mx-auto max-w-4xl text-center relative z-10">
-            <h2 className="text-3xl font-bold mb-8 text-gray-800 uppercase italic tracking-tight">
+          <div className="container mx-auto max-w-5xl text-center relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800 uppercase italic tracking-tight">
               Membangun Masa Depan Dengan Presisi
             </h2>
-            <div className="w-16 h-1 bg-[#4834d4] mx-auto mb-8"></div>
-            <p className="text-gray-600 leading-loose text-lg font-light">
-              CV IM adalah perusahaan konstruksi dan arsitektur terkemuka yang berdedikasi untuk memberikan kualitas terbaik dalam setiap proyek. Kami percaya bahwa setiap perencanaan dapat menjadi kenyataan melalui keahlian teknik yang tepat dan komitmen terhadap detail.
-            </p>
+            <div className="w-20 h-1.5 bg-[#4834d4] mx-auto mb-10"></div>
+            
+            {loading ? (
+              <div className="flex justify-center p-4">
+                <Loader2 className="animate-spin text-gray-200" size={30} />
+              </div>
+            ) : (
+              <p className="text-gray-600 leading-loose text-lg md:text-xl font-light max-w-4xl mx-auto whitespace-pre-line italic">
+                {aboutText || "CV IM adalah perusahaan konstruksi dan arsitektur terkemuka yang berdedikasi untuk memberikan kualitas terbaik dalam setiap proyek. Kami percaya bahwa setiap perencanaan dapat menjadi kenyataan melalui keahlian teknik yang tepat dan komitmen terhadap detail."}
+              </p>
+            )}
+            
+            <div className="mt-12">
+              <Link to="/company" className="text-xs font-bold text-[#4834d4] border-b-2 border-[#4834d4] pb-1 hover:text-orange-500 hover:border-orange-500 transition-all uppercase tracking-widest">
+                Pelajari Profil Lengkap Kami
+              </Link>
+            </div>
           </div>
         </section>
 
