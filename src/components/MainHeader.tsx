@@ -51,16 +51,7 @@ const MainHeader = () => {
     { 
       label: "PROYEK", 
       icon: <Briefcase size={18} />, 
-      path: "/projects",
-      subItems: [
-        { label: "Proyek yang Pernah Ditangani", path: "/projects" },
-        { label: "Eksterior", path: "/projects/eksterior" },
-        { label: "Interior", path: "/projects/interior" },
-        { label: "Pekerjaan Gedung", path: "/projects/gedung" },
-        { label: "Rancang & Bangun", path: "/projects/rancang-bangun" },
-        { label: "Pekerjaan Sipil", path: "/projects/sipil" },
-        { label: "Pekerjaan Umum", path: "/projects/umum" },
-      ]
+      path: "/projects"
     },
     { 
       label: "PELAYANAN", 
