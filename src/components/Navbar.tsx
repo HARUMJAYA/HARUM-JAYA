@@ -48,7 +48,6 @@ const Navbar = () => {
       icon: <UserPlus size={14} />, 
       path: "/career",
       dropdown: [
-        { label: "Semua Karir", path: "/career" },
         { label: "Budaya Kami", path: "/career/budaya" },
         { label: "Karir Area", path: "/career/area" },
         { label: "Daftar Kerja", path: "/career/daftar-kerja" },
