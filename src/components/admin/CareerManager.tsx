@@ -39,8 +39,7 @@ const CareerManager = () => {
     try {
       const { data, error } = await supabase
         .from("careers")
-        .select("*")
-        .order("created_at", { ascending: false });
+.order("created_at", { ascending: false });
       
       if (error) throw error;
       setItems(data || []);
