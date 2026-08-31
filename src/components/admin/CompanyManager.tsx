@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Save, Upload, ImageIcon, X } from "lucide-react";
+import { Loader2, Save, Upload, ImageIcon, X, Building2 } from "lucide-react";
 import { showSuccess, showError } from "@/utils/toast";
 
 const CompanyManager = () => {
@@ -13,6 +13,7 @@ const CompanyManager = () => {
   
   // Data state
   const [data, setData] = useState<Record<string, string>>({
+    about_company: "",
     vision: "",
     mission: "",
     values: "",
@@ -109,13 +110,37 @@ const CompanyManager = () => {
 
   return (
     <div className="space-y-6">
-      <Tabs defaultValue="vision-mission" className="w-full">
+      <Tabs defaultValue="about" className="w-full">
         <TabsList className="bg-white border mb-4 p-1 h-auto flex flex-wrap gap-1">
+          <TabsTrigger value="about" className="px-4 py-2">Tentang Perusahaan</TabsTrigger>
           <TabsTrigger value="vision-mission" className="px-4 py-2">Visi & Misi</TabsTrigger>
           <TabsTrigger value="values-strategy" className="px-4 py-2">Nilai & Strategi</TabsTrigger>
           <TabsTrigger value="structure" className="px-4 py-2">Struktur Organisasi</TabsTrigger>
           <TabsTrigger value="awards" className="px-4 py-2">Penghargaan & Sertifikat</TabsTrigger>
         </TabsList>
+
+        <TabsContent value="about">
+          <Card className="border-none shadow-sm">
+            <CardHeader className="bg-gray-50/50 border-b">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Building2 size={18} className="text-[#4834d4]" /> Deskripsi Utama Perusahaan
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6 space-y-4">
+              <p className="text-xs text-gray-500 italic">Teks ini akan muncul di bagian atas halaman Profil Perusahaan sebagai deskripsi pengantar.</p>
+              <Textarea 
+                placeholder="Tuliskan sejarah singkat atau profil utama perusahaan di sini..."
+                value={data.about_company}
+                onChange={(e) => handleInputChange("about_company", e.target.value)}
+                className="min-h-[200px]"
+              />
+              <Button onClick={() => saveInfo("about_company")} disabled={saving} className="bg-[#4834d4]">
+                {saving ? <Loader2 className="animate-spin mr-2" size={18} /> : <Save size={18} className="mr-2" />}
+                Simpan Deskripsi
+              </Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
         <TabsContent value="vision-mission" className="space-y-6">
           <Card className="border-none shadow-sm">
