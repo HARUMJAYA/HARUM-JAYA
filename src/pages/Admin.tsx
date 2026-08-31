@@ -24,6 +24,7 @@ import NewsManager from "@/components/admin/NewsManager";
 import CompanyManager from "@/components/admin/CompanyManager";
 import ServiceManager from "@/components/admin/ServiceManager";
 import CareerManager from "@/components/admin/CareerManager";
+import SettingsManager from "@/components/admin/SettingsManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -206,16 +207,7 @@ const Admin = () => {
             {currentTab === "Berita" && <NewsManager />}
             {currentTab === "Pelayanan" && <ServiceManager />}
             {currentTab === "Karir" && <CareerManager />}
-
-            {currentTab === "Pengaturan" && (
-              <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
-                <div className="inline-flex p-4 rounded-full bg-gray-50 text-gray-400 mb-4">
-                  <Settings size={48} />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-700 mb-2">Halaman {currentTab}</h3>
-                <p className="text-gray-500 italic">Fitur ini sedang dalam pengembangan.</p>
-              </div>
-            )}
+            {currentTab === "Pengaturan" && <SettingsManager />}
           </div>
         </div>
       </main>
