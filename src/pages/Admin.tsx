@@ -64,7 +64,7 @@ const Admin = () => {
   const navItems = [
     { label: "Dashboard", icon: <LayoutDashboard size={20} /> },
     { label: "Perusahaan", icon: <Building2 size={20} /> },
-    { label: "Proyek", icon: <Briefcase size={20} /> },
+    { label: "Proyek Ditangani", icon: <Briefcase size={20} /> },
     { label: "Berita", icon: <Newspaper size={20} /> },
     { label: "Pelayanan", icon: <Cog size={20} /> },
     { label: "Karir", icon: <UserPlus size={20} /> },
@@ -189,9 +189,9 @@ const Admin = () => {
                     <p className="text-xs text-muted-foreground">Kontraktor & Program Magang</p>
                   </CardContent>
                 </Card>
-                <Card className="cursor-pointer hover:shadow-lg transition-all group" onClick={() => setCurrentTab("Proyek")}>
+                <Card className="cursor-pointer hover:shadow-lg transition-all group" onClick={() => setCurrentTab("Proyek Ditangani")}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Manajemen Proyek</CardTitle>
+                    <CardTitle className="text-sm font-medium">Proyek Ditangani</CardTitle>
                     <Briefcase className="h-4 w-4 text-muted-foreground group-hover:text-orange-500 transition-colors" />
                   </CardHeader>
                   <CardContent>
@@ -203,7 +203,7 @@ const Admin = () => {
             )}
 
             {currentTab === "Perusahaan" && <CompanyManager />}
-            {currentTab === "Proyek" && <ProjectManager />}
+            {currentTab === "Proyek Ditangani" && <ProjectManager />}
             {currentTab === "Berita" && <NewsManager />}
             {currentTab === "Pelayanan" && <ServiceManager />}
             {currentTab === "Karir" && <CareerManager />}

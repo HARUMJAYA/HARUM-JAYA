@@ -152,7 +152,7 @@ const ProjectManager = () => {
       <Card className="border-none shadow-sm overflow-hidden">
         <CardHeader className="bg-gray-50/50 border-b">
           <CardTitle className="text-lg flex items-center gap-2 text-gray-700">
-            <Plus size={20} className="text-[#4834d4]" /> Tambah Proyek Baru
+            <Plus size={20} className="text-[#4834d4]" /> Tambah Proyek yang Ditangani
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-6">
@@ -249,7 +249,7 @@ const ProjectManager = () => {
 
       <Card className="border-none shadow-sm overflow-hidden">
         <CardHeader className="bg-gray-50/50 border-b flex flex-row items-center justify-between">
-          <CardTitle className="text-lg text-gray-700">Daftar Inventaris Proyek</CardTitle>
+          <CardTitle className="text-lg text-gray-700">Daftar Inventaris Proyek Ditangani</CardTitle>
           <div className="text-[10px] font-bold text-gray-400 bg-white px-2 py-1 rounded border uppercase tracking-wider">
             Total: {projects.length}
           </div>
