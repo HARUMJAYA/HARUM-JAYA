@@ -65,9 +65,9 @@ const Career = () => {
               {loading ? (
                 <div className="flex flex-col items-center justify-center p-20">
                   <Loader2 className="animate-spin text-[#4834d4] mb-4" size={40} />
-            <p className="text-gray-400 italic font-medium">Memuat data karir...</p>
-          </div>
-        ) : (
+                  <p className="text-gray-400 italic font-medium">Memuat data karir...</p>
+                </div>
+              ) : (
           <div className="space-y-32">
             {categories.map((cat) => {
               // Filter data berdasarkan kategori
