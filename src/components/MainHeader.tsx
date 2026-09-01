@@ -101,17 +101,17 @@ const MainHeader = () => {
                          </div>
                        </AccordionTrigger>
                        <AccordionContent className="flex flex-col gap-1 pb-4">
-                         {item.subItems.map((sub, subIdx) => (
-                           <Link 
-                             key={subIdx} 
-                             to={sub.path}
-                             onClick={() => setIsOpen(false)}
-                             className="text-xs text-gray-400 py-2 pl-10 hover:text-orange-400 transition-colors uppercase font-bold"
-                           >
-                             {sub.label}
-                           </Link>
-                         ))}
-                       </AccordionContent>
+                                               {item.subItems.map((sub, subIdx) => (
+                                                 <Link
+                                                   key={subIdx}
+                                                   to={sub.path}
+                                                   onClick={() => setIsOpen(false)}
+                                                   className="text-xs text-gray-400 py-2 pl-10 hover:text-orange-400 transition-colors uppercase font-bold"
+                                                 >
+                                                   {sub.label}
+                                                 </Link>
+                                               ))}
+                                             </AccordionContent>
                      </AccordionItem>
                    ) : (
                      <Link 
