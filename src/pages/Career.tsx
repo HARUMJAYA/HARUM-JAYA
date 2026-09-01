@@ -61,10 +61,10 @@ const Career = () => {
         </div>
       </div>
 
-      <main className="container mx-auto max-w-7xl px-4 py-24">
-        {loading ? (
-          <div className="flex flex-col items-center justify-center p-20">
-            <Loader2 className="animate-spin text-[#4834d4] mb-4" size={40} />
+      <main className="container mx-auto max-w-7xl px-4 py-24 flex flex-col items-center">
+              {loading ? (
+                <div className="flex flex-col items-center justify-center p-20">
+                  <Loader2 className="animate-spin text-[#4834d4] mb-4" size={40} />
             <p className="text-gray-400 italic font-medium">Memuat data karir...</p>
           </div>
         ) : (
