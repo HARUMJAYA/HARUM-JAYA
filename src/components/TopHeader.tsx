@@ -47,16 +47,16 @@ const TopHeader = () => {
             </a>
           </div>
           
-          {session ? (
+          {session && (
             <div className="flex items-center gap-4">
-              <Link 
-                to="/admin" 
+              <Link
+                to="/admin"
                 className="flex items-center gap-1.5 hover:text-orange-600 transition-colors font-bold text-[#4834d4]"
               >
                 <LayoutDashboard size={12} />
                 KE PANEL ADMIN
               </Link>
-              <button 
+              <button
                 onClick={handleLogout}
                 className="flex items-center gap-1.5 hover:text-red-600 transition-colors font-semibold text-red-500 border-l border-gray-300 pl-4"
               >
@@ -64,14 +64,6 @@ const TopHeader = () => {
                 LOGOUT
               </button>
             </div>
-          ) : (
-            <Link 
-              to="/login" 
-              className="flex items-center gap-1.5 hover:text-orange-600 transition-colors font-semibold text-[#4834d4]"
-            >
-              <Lock size={12} />
-              LOGIN ADMIN
-            </Link>
           )}
         </div>
       </div>
