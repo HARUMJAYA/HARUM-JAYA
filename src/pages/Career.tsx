@@ -89,7 +89,7 @@ const Career = () => {
               }
 
               return (
-                <section key={cat.name} id={cat.name.toLowerCase().replace(/\s+/g, "-")} className="animate-in fade-in slide-in-from-bottom-10 duration-700">
+                              <section key={cat.name} id={cat.name.toLowerCase().replace(/\s+/g, "-")} className="animate-in fade-in slide-in-from-bottom-10 duration-700 max-w-4xl mx-auto">
                   <div className="flex items-center gap-4 mb-16 border-b-2 border-gray-100 pb-6">
                     <div className="p-3 bg-gray-50 rounded-xl">
                       <span className={`${cat.color}`}>{cat.icon}</span>
