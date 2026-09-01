@@ -101,17 +101,17 @@ const MainHeader = () => {
                          </div>
                        </AccordionTrigger>
                        <AccordionContent className="flex flex-col gap-1 pb-4">
-                                               {item.subItems.map((sub, subIdx) => (
-                                                 <Link
-                                                   key={subIdx}
-                                                   to={sub.path}
-                                                   onClick={() => setIsOpen(false)}
-                                                   className="text-xs text-gray-400 py-2 pl-10 hover:text-orange-400 transition-colors uppercase font-bold"
-                                                 >
-                                                   {sub.label}
-                                                 </Link>
-                                               ))}
-                                             </AccordionContent>
+                         {item.subItems.map((sub, subIdx) => (
+                           <Link 
+                             key={subIdx} 
+                             to={sub.path}
+                             onClick={() => setIsOpen(false)}
+                             className="text-xs text-gray-400 py-2 pl-10 hover:text-orange-400 transition-colors uppercase font-bold"
+                           >
+                             {sub.label}
+                           </Link>
+                         ))}
+                       </AccordionContent>
                      </AccordionItem>
                    ) : (
                      <Link 
@@ -141,7 +141,7 @@ const MainHeader = () => {
                      <LayoutDashboard size={18} />
                      <span className="text-sm font-bold tracking-wider">KE PANEL ADMIN</span>
                    </Link>
-                   <button
+                   <button 
                      onClick={handleLogout}
                      className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-red-400 bg-white/5 hover:bg-white/10 transition-colors w-full text-left"
                    >
@@ -149,6 +149,15 @@ const MainHeader = () => {
                      <span className="text-sm font-bold tracking-wider">LOGOUT</span>
                    </button>
                  </>
+               ) : (
+                 <Link 
+                   to="/login"
+                   onClick={() => setIsOpen(false)}
+                   className="flex items-center gap-4 px-6 py-4 border-b border-gray-700/50 text-[#4834d4] bg-white/5 hover:bg-white/10 transition-colors"
+                 >
+                   <Lock size={18} />
+                   <span className="text-sm font-bold tracking-wider underline">LOGIN ADMIN</span>
+                 </Link>
                )}
              </nav>
              
